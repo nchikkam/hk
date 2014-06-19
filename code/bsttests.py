@@ -1,7 +1,8 @@
-
-
-# Pure TDD
 import unittest
+from lib.bst import (
+    BinarySearchTree
+)
+
 class TestBinarySearchTree(unittest.TestCase):
 
     def testInit(self):

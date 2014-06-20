@@ -34,6 +34,18 @@ class BinarySearchTree:
             if self.left is not None:
                 result = self.left.search(data)
         return result
+        """
+        Iterative: k
+          n = self
+          while (n != None) {
+            if k < n.data:
+                n = n.left
+            elif k > n.data:
+                n = n.right
+            else:
+                return True
+          return False
+        """
 
     def preOrder(self):
         yield self.data
@@ -92,3 +104,29 @@ class BinarySearchTree:
             return self.left.min()
         else:
             return self.data
+
+    def size(self):  #count no of nodes
+        n = 0
+        if self.data != None:
+            n += 1
+        if self.left:
+            n += self.left.size()
+        if self.right:
+            n += self.right.size()
+
+        return n
+
+    def findMax(self, a, b):
+        return max(a, b)
+
+    def getHeight(self):
+        if self.data != None:
+            height = 1
+            if self.left:
+                height += self.left.getHeight()
+            if self.right:
+                height += self.right.getHeight()
+
+            return height
+        else:
+            return 0

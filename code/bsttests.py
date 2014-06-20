@@ -90,9 +90,19 @@ class TestBinarySearchTree(unittest.TestCase):
         expected = min(l)
         self.assertEqual(expected, tree.min())
 
+    def testCountNoOfNodes(self):
+        tree = BinarySearchTree()
+        l = range(100)
+        for d in l:
+            tree.insert(d)
+        self.assertEqual(tree.size(), len(l))
 
-
-
+    def testHeight(self):
+        tree = BinarySearchTree()
+        l = range(100)
+        for d in l:
+            tree.insert(d)
+        self.assertEqual(tree.getHeight(), len(l))
 
 if __name__ == "__main__":
     unittest.main()

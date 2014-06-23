@@ -169,9 +169,7 @@ class BinarySearchTree:
            / \    / \   / \   / \
           15 13  11  9 7  5  3   1
         """
-        if self.data == None:
-            return
-        else:
+        if self.data != None:
             if self.left:
                 self.left.mirror()
             if self.right:

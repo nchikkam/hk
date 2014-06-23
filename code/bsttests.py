@@ -144,5 +144,25 @@ class TestBinarySearchTree(unittest.TestCase):
         for v in l:
             self.assertEqual(v, inOrderGen.next())
 
+    def testSameTree(self):
+        treeOne = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            treeOne.insert(d)
+
+        treeTwo = BinarySearchTree()
+        for d in l:
+            treeTwo.insert(d)
+
+        self.assertTrue(treeOne.sameTree(treeTwo))
+        self.assertTrue(treeTwo.sameTree(treeOne))
+
+
+        treeTwo.insert(100)
+        self.assertFalse(treeTwo.sameTree(treeOne))
+
+        treeOne.insert(100)
+        self.assertTrue(treeTwo.sameTree(treeOne))
+
 if __name__ == "__main__":
     unittest.main()

@@ -176,3 +176,30 @@ class BinarySearchTree:
                 self.right.mirror()
 
             self.left, self.right = self.right, self.left
+
+    def sameTree(self, other):
+        """
+        return true if self and other are structurally identical
+        """
+        if (self == None and other == None):
+            return True
+
+        if self.data == other.data: #data equal
+            lflag = None
+            rflag = None
+            if self.left == None and other.left==None:
+                lflag = True
+            elif self.left != None and other.left != None:
+                lflag = self.left.sameTree(other.left)
+            else:
+                lflag = False
+
+            if self.right == None and other.right == None:
+                rflag = True
+            elif self.right != None and other.right != None:
+                rflag = self.right.sameTree(other.right)
+            else:
+                rflag = False
+            return lflag == rflag
+        else: # one is empty and the other is not, False
+            return False

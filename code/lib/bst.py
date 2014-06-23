@@ -144,3 +144,37 @@ class BinarySearchTree:
             return ( lHasSum or rHasSum or mSum == 0)
         else:
             return ( sum == 0 )
+
+    def mirror(self):
+        """
+        Change a tree so that the roles of the
+        left and right pointers are swapped at every node.
+
+         So the tree...
+
+                       8
+                    /    \
+                 4         12
+               /  \       /  \
+             2     6     10   14
+           / \    / \   / \   / \
+          1   3  5   7 9  11 13  15
+
+         is changed to...
+                       8
+                    /    \
+                 12        4
+               /  \       /  \
+             14    10    6    2
+           / \    / \   / \   / \
+          15 13  11  9 7  5  3   1
+        """
+        if self.data == None:
+            return
+        else:
+            if self.left:
+                self.left.mirror()
+            if self.right:
+                self.right.mirror()
+
+            self.left, self.right = self.right, self.left

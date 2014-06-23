@@ -130,8 +130,19 @@ class TestBinarySearchTree(unittest.TestCase):
         for e in expected_sums:
             self.assertTrue(tree1.hasPathSum(e))
 
+    def testMirror(self):
+        tree = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            tree.insert(d)
 
+        tree.mirror()
+        # when you do a mirror of a BST, the inOrder gives you elements in descending order
+        l.sort(reverse=True)
+        inOrderGen = tree.inOrder()
 
+        for v in l:
+            self.assertEqual(v, inOrderGen.next())
 
 if __name__ == "__main__":
     unittest.main()

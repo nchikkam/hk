@@ -107,26 +107,40 @@ class BinarySearchTree:
 
     def size(self):  #count no of nodes
         n = 0
-        if self.data != None:
-            n += 1
         if self.left:
             n += self.left.size()
+        if self.data != None:
+            n += 1
         if self.right:
             n += self.right.size()
-
         return n
 
     def findMax(self, a, b):
         return max(a, b)
 
-    def getHeight(self):
+    def getDepth(self):
         if self.data != None:
-            height = 1
+            l, r = 0, 0
             if self.left:
-                height += self.left.getHeight()
+                l = self.left.getDepth()
             if self.right:
-                height += self.right.getHeight()
+                r = self.right.getDepth()
+            return max(l, r) +1
+        return 0
 
-            return height
+    def hasPathSum(self, sum):
+        """
+        find if there is a path from root to some node that sums to the given value.
+        Strategy: subtract the node value from the sum when recurring down, and check
+        to see if the sum is 0 when you run out of tree.
+        """
+        if self.data != None:
+            mSum = sum - self.data
+            lHasSum, rHasSum = False, False
+            if self.left:
+                lHasSum = self.left.hasPathSum(mSum)
+            if self.right:
+                rHasSum = self.right.hasPathSum(mSum)
+            return ( lHasSum or rHasSum or mSum == 0)
         else:
-            return 0
+            return ( sum == 0 )

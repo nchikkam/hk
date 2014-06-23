@@ -97,12 +97,41 @@ class TestBinarySearchTree(unittest.TestCase):
             tree.insert(d)
         self.assertEqual(tree.size(), len(l))
 
-    def testHeight(self):
+    def testDepth(self):
         tree = BinarySearchTree()
         l = range(100)
         for d in l:
             tree.insert(d)
-        self.assertEqual(tree.getHeight(), len(l))
+        self.assertEqual(tree.getDepth(), len(l))
+
+        tree1 = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            tree1.insert(d)
+
+        self.assertEqual(tree1.getDepth(), 4)
+
+    def testHasPathSum(self):
+        tree = BinarySearchTree()
+        l = range(100)
+        s = 0
+        for d in l:
+            tree.insert(d)
+            s += d
+
+        self.assertTrue(tree.hasPathSum(s))
+
+        tree1 = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            tree1.insert(d)
+
+        expected_sums = [8, 12, 14, 15, 17, 18, 23, 25, 20, 30, 34, 39, 41, 47, 49]
+        for e in expected_sums:
+            self.assertTrue(tree1.hasPathSum(e))
+
+
+
 
 if __name__ == "__main__":
     unittest.main()

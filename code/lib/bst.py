@@ -229,3 +229,39 @@ class BinarySearchTree:
             res += BinarySearchTree.catalan(i) * BinarySearchTree.catalan(n-i-1);
 
         return res;
+
+    def isBST(self):
+        if self.data == None: return True
+        # if min of the left subtree is more than self.data return false
+        if self.left:
+            if self.left.min() > self.data: return False
+        # false if the max of the right is <= than us
+        if self.right:
+            if self.right.max() <= self.data: return False
+
+        # false if, recursively, the left or right is not a BST
+        if self.left:
+            if self.left.isBST() == False: return False
+
+        if self.right:
+            if self.right.isBST() == False: return False
+
+        #if passed All, its a BST
+        return True
+
+"""
+            isBST(struct node* node) {
+    if (node==NULL) return(true);
+    // false if the min of the left is > than us
+    if (node->left!=NULL && minValue(node->left) > node->data)
+    return(false);
+    // false if the max of the right is <= than us
+    if (node->right!=NULL && maxValue(node->right) <= node->data)
+    return(false);
+    // f
+    if (!isBST(node->left) || !isBST(node->right))
+    return(false);
+    // passing all that, it's a BST
+    return(true);
+    }
+"""

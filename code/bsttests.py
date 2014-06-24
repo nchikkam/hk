@@ -174,5 +174,29 @@ class TestBinarySearchTree(unittest.TestCase):
         self.assertEqual(BinarySearchTree.countTrees(7), 429)
         self.assertEqual(BinarySearchTree.countTrees(10), BinarySearchTree.catalan(10))
 
+    def testIsBST(self):
+        bstOne = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            bstOne.insert(d)
+
+        self.assertTrue(bstOne.isBST())
+
+
+        bstTwo = BinarySearchTree()
+        l = range(100)
+        for d in l:
+            bstTwo.insert(d)
+
+        self.assertTrue(bstTwo.isBST())
+
+    def todoTestIsBSTNegativeCase(self):
+        leveOrder = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        bt = BinaryTree()
+        for d in levelOrder:
+            bt.inSertInLevelOrder(d)
+
+        self.assertFalse(bt)
+
 if __name__ == "__main__":
     unittest.main()

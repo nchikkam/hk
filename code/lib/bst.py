@@ -248,20 +248,3 @@ class BinarySearchTree:
 
         #if passed All, its a BST
         return True
-
-"""
-            isBST(struct node* node) {
-    if (node==NULL) return(true);
-    // false if the min of the left is > than us
-    if (node->left!=NULL && minValue(node->left) > node->data)
-    return(false);
-    // false if the max of the right is <= than us
-    if (node->right!=NULL && maxValue(node->right) <= node->data)
-    return(false);
-    // f
-    if (!isBST(node->left) || !isBST(node->right))
-    return(false);
-    // passing all that, it's a BST
-    return(true);
-    }
-"""

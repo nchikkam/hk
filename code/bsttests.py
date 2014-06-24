@@ -164,5 +164,15 @@ class TestBinarySearchTree(unittest.TestCase):
         treeOne.insert(100)
         self.assertTrue(treeTwo.sameTree(treeOne))
 
+    def testCountTrees(self):  #Assumes only Binary Tree, doesn't have to be a BST
+        self.assertEqual(BinarySearchTree.countTrees(0), 1)
+        self.assertEqual(BinarySearchTree.countTrees(1), 1)
+        self.assertEqual(BinarySearchTree.countTrees(2), 2)
+        self.assertEqual(BinarySearchTree.countTrees(3), 5)
+        self.assertEqual(BinarySearchTree.countTrees(4), 14)
+        self.assertEqual(BinarySearchTree.countTrees(6), 132)
+        self.assertEqual(BinarySearchTree.countTrees(7), 429)
+        self.assertEqual(BinarySearchTree.countTrees(10), BinarySearchTree.catalan(10))
+
 if __name__ == "__main__":
     unittest.main()

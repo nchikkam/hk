@@ -203,3 +203,29 @@ class BinarySearchTree:
             return lflag == rflag
         else: # one is empty and the other is not, False
             return False
+
+    @staticmethod
+    def countTrees(numKeys):
+        if numKeys <= 1: return 1
+        # there will be one value at the root, with whatever remains
+        # on the left and right each forming their own subtrees.
+        # Iterate through all the values that could be the root...
+        sum = 0
+        for root in range(1, numKeys+1): # 1<=numKeys
+            left = BinarySearchTree.countTrees(root-1)
+            right = BinarySearchTree.countTrees(numKeys-root)
+            # number of possible trees with this root == left*right
+            sum += left * right
+        return sum
+
+    @staticmethod
+    def catalan(n) :
+        """
+        useful resource(s): http://en.wikipedia.org/wiki/Catalan_number
+        """
+        if (n == 0): return 1
+        res = 0
+        for i in range(n):
+            res += BinarySearchTree.catalan(i) * BinarySearchTree.catalan(n-i-1);
+
+        return res;

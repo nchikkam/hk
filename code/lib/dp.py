@@ -4,26 +4,35 @@ def cost(a, b):
     function to calculate the edit distance cost between 2 given words.
     useful and insightful url: http://web.stanford.edu/class/cs124/lec/med.pdf
     """
-    m = len(a)
-    n = len(b)
+    m = len(a) + 1
+    n = len(b) + 1
     # prepare the cost Matrix for house keeping
-    c = [[]] * m
+    table = [[]] * m
     for l in range(m):
-        c[l] = [0] * n
+        table[l] = [0] * n
 
-    for i in range(m):
-        for j in range(n):
-            if   i == 0 and j == 0: c[i][j] = 0 if a[i]==b[j] else 1 # edit distance for initial cases
-            elif i == 0: c[i][j] = j # base case
-            elif j == 0: c[i][j] = i
-            else:
-                c[i][j] = min(c[i-1][j]+1, c[i][j-1]+1)   # c(i,j) = min{cost(i-1, j), cost(i-1, j-1), cost(i, j-1)};
-                temp = 0 if a[i]==b[j] else 1
-                c[i][j] = min(c[i][j], c[i-1][j-1]+temp)
+    #set the 0 row and col to sequence numbers
+    for i in range(m): table[i][0] = i
+    for i in range(n): table[0][i] = i
 
-    for i in range(m):
-        for j in range(n):
-            print c[i][j],
-        print
+    for i in range(1, m):
+        for j in range(1, n):
+            d = 0 if a[i-1]==b[j-1] else 1 # assuming substitution is of cost 1
+            table[i][j] = min(
+                          table[i-1][j-1] + d,
+                          table[i-1][j] + 1,
+                          table[i][j-1] + 1
+                          )
+    return table[m-1][n-1]
 
-    return c[m-1][n-1]
+def recursiveCost(a, b, m, n):
+    if n == len(b): return len(b)-m
+    if m == len(a): return len(a)-n
+
+    if a[m] == b[n]: return recursiveCost(a, b, m+1, n+1)
+    if a[m] != b[n]:
+        return 1 + min(
+                       recursiveCost(a, b, m, n+1),
+                       recursiveCost(a, b, m+1, n),
+                       recursiveCost(a, b, m+1, n+1)
+                    );

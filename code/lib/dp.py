@@ -23,7 +23,33 @@ def cost(a, b):
                           table[i-1][j] + 1,
                           table[i][j-1] + 1
                           )
+
+    traceBack("", "",  "",  table, m-1, n-1, a, b)
     return table[m-1][n-1]
+
+def traceBack(r1, r2, r3, m, i, j, s1, s2):
+    """
+    Awesome explanation from: http://www.csse.monash.edu.au/~lloyd/tildeAlgDS/Dynamic/Edit/
+    """
+    if i > 0 and j > 0:
+        diag = m[i-1][j-1]
+        diagCh = '|'
+        if s1[i-1] != s2[j-1]:
+            diag += 1
+            diagCh = ' '
+
+        if m[i][j] == diag:
+            traceBack(s1[i-1]+r1, diagCh+r2, s2[j-1]+r3, m, i-1, j-1, s1, s2)
+        elif m[i][j] == m[i-1][j]-0 + 1: # delete
+            traceBack(s1[i-1]+r1, ' '+r2, '-'+r3, m, i-1, j, s1, s2)
+        else:
+            traceBack('-'+r1, ' '+r2, s2[j-1]+r3, m, i, j-1, s1, s2) # insertion
+    elif i > 0:
+        traceBack(s1[i-1]+r1, ' '+r2, '-'+r3, m, i-1, j, s1, s2)
+    elif j > 0:
+        traceBack('-'+r1, ' '+r2, s2[j-1]+r3, m, i, j-1, s1, s2)
+    else:
+        print r1+'\n'+r2+'\n'+r3+'\n'
 
 def recursiveCost(a, b, m, n):
     if n == len(b): return len(b)-m

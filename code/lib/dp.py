@@ -24,7 +24,7 @@ def cost(a, b):
                           table[i][j-1] + 1
                           )
 
-    traceBack("", "",  "",  table, m-1, n-1, a, b)
+    #traceBack("", "",  "",  table, m-1, n-1, a, b)
     return table[m-1][n-1]
 
 def traceBack(r1, r2, r3, m, i, j, s1, s2):
@@ -51,14 +51,14 @@ def traceBack(r1, r2, r3, m, i, j, s1, s2):
     else:
         print r1+'\n'+r2+'\n'+r3+'\n'
 
-def recursiveCost(a, b, m, n):
-    if n == len(b): return len(b)-m
-    if m == len(a): return len(a)-n
 
-    if a[m] == b[n]: return recursiveCost(a, b, m+1, n+1)
-    if a[m] != b[n]:
-        return 1 + min(
-                       recursiveCost(a, b, m, n+1),
-                       recursiveCost(a, b, m+1, n),
-                       recursiveCost(a, b, m+1, n+1)
-                    );
+def findEditDistance (a, b):
+    if   len(a) == 0: return len(b)
+    elif len(b) == 0: return len(a)
+    else:
+        addCost = findEditDistance(a, b[1:]) + 1
+        delCost = findEditDistance(a[1:], b) + 1
+        substCost = findEditDistance(a[1:], b[1:])
+        if a[0] != b[0]:
+            substCost += 1
+    return min(addCost, delCost, substCost)

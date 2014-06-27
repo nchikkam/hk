@@ -24,7 +24,7 @@ def cost(a, b):
                           table[i][j-1] + 1
                           )
 
-    #traceBack("", "",  "",  table, m-1, n-1, a, b)
+    traceBack("", "",  "",  table, m-1, n-1, a, b)
     return table[m-1][n-1]
 
 def traceBack(r1, r2, r3, m, i, j, s1, s2):

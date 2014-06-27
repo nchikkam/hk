@@ -21,6 +21,9 @@ class TesStringEditDistance(unittest.TestCase):
                  ("a", "ab", 1),
                  ("a", "aa", 1),
                  ("a", "bb", 2),
+                 ("SPARTAN", "PART", 3),
+                 ("PLASMA", "ALTRUISM", 6),
+                 ("ACGTACGTACGT", "AGTACCTACCGT", 3)
                 ]
 
         for (a, b, expected) in data:

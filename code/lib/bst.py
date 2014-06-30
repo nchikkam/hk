@@ -270,9 +270,6 @@ class BinarySearchTree:
                 return None
 
     def spaceEfficientTraverseal(self):
-        pass
-        if self.data == None:
-            return
         current = self
         while current != None:
             if current.left == None:

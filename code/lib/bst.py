@@ -268,3 +268,27 @@ class BinarySearchTree:
                 return self.right.commonAncestor(a, b)
             else:
                 return None
+
+    def spaceEfficientTraverseal(self):
+        pass
+        if self.data == None:
+            return
+        current = self
+        while current != None:
+            if current.left == None:
+                yield current.data
+                current = current.right
+            else:
+                # find in order predecessor of current make current right of the right most node in the left sub tree
+                pre = current.left
+                while pre.right != None and pre.right != current:
+                    pre = pre.right
+                # make current s right child of its in order predecessor
+                if pre.right == None:
+                    pre.right = current
+                    current = current.left
+                # revert the pointer back to restore the tree to its original form
+                else:
+                    pre.right = None
+                    yield current.data
+                    current = current.right

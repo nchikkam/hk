@@ -42,7 +42,6 @@ class TestBinarySearchTree(unittest.TestCase):
             tree.insert(d)
 
         for v in tree.preOrder():
-            #print v
             pass
             #ToDo: Test the post Order Sequence
 
@@ -208,6 +207,23 @@ class TestBinarySearchTree(unittest.TestCase):
         self.assertEqual(bst.commonAncestor(4, 10), 8)
         self.assertEqual(bst.commonAncestor(4, 14), 8)
         self.assertEqual(bst.commonAncestor(1, 15), 8)
+
+    def testSpaceEfficientTraversal(self):
+        bstOne = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            bstOne.insert(d)
+
+        bstTwo = bstOne
+
+        genOne = bstTwo.spaceEfficientTraverseal()
+        genTwo = bstOne.inOrder()
+        l.sort()  # inOrder gives the elements in sorted Order always in BinaryTree
+        for i in l:
+            self.assertEqual(i, genOne.next())
+            self.assertEqual(i, genTwo.next())
+
+        #ToDo: create a copyTree method in the API and use it to test the similarity[Deep Copy]
 
 if __name__ == "__main__":
     unittest.main()

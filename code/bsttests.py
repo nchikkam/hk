@@ -198,5 +198,16 @@ class TestBinarySearchTree(unittest.TestCase):
 
         self.assertFalse(bt)
 
+    def testCommonAncestor(self):
+        bst = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            bst.insert(d)
+
+        self.assertEqual(bst.commonAncestor(4, 12), 8)
+        self.assertEqual(bst.commonAncestor(4, 10), 8)
+        self.assertEqual(bst.commonAncestor(4, 14), 8)
+        self.assertEqual(bst.commonAncestor(1, 15), 8)
+
 if __name__ == "__main__":
     unittest.main()

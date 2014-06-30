@@ -248,3 +248,23 @@ class BinarySearchTree:
 
         #if passed All, its a BST
         return True
+
+    def commonAncestor(self, a, b):
+        # negative case, LCA doesn't exist
+        if self.data == None or  self.data == a or self.data == b:
+            return None
+
+        if a < self.data < b or b < self.data < a:
+            return self.data
+
+        # LCA would probably in the Left sub tree
+        if self.data > a and self.data > b:
+            if self.left:
+                return self.left.commonAncestor(a, b)
+            else:
+                return None
+        else:#        if self.data < a and self.data < b:
+            if self.right:
+                return self.right.commonAncestor(a, b)
+            else:
+                return None

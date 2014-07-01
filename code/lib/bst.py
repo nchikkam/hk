@@ -269,7 +269,7 @@ class BinarySearchTree:
             else:
                 return None
 
-    def spaceEfficientTraverseal(self):
+    def spaceEfficientTraversal(self):
         current = self
         while current != None:
             if current.left == None:

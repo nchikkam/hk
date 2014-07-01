@@ -216,7 +216,7 @@ class TestBinarySearchTree(unittest.TestCase):
 
         bstTwo = bstOne
 
-        genOne = bstTwo.spaceEfficientTraverseal()
+        genOne = bstTwo.spaceEfficientTraversal()
         genTwo = bstOne.inOrder()
         l.sort()  # inOrder gives the elements in sorted Order always in BinaryTree
         for i in l:

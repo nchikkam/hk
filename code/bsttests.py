@@ -215,6 +215,7 @@ class TestBinarySearchTree(unittest.TestCase):
             bstOne.insert(d)
 
         bstTwo = bstOne
+        clone = bstOne
 
         genOne = bstTwo.spaceEfficientTraversal()
         genTwo = bstOne.inOrder()
@@ -223,7 +224,28 @@ class TestBinarySearchTree(unittest.TestCase):
             self.assertEqual(i, genOne.next())
             self.assertEqual(i, genTwo.next())
 
-        #ToDo: create a copyTree method in the API and use it to test the similarity[Deep Copy]
+
+        #create a copyTree method in the API and use it to test the similarity[Deep Copy]
+        self.assertTrue(bstOne.sameTree(clone))
+
+    def printTreeToList(self):
+        bst = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            bst.insert(d)
+
+        blist = bst.treeToList()
+        bst.printList(blist)
+
+    def bstCloneTest(self):
+        bst = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            bst.insert(d)
+        clone = bst.bstClone()
+        self.assertTrue(bst.sameTree(clone))
+
+
 
 if __name__ == "__main__":
     unittest.main()

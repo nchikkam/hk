@@ -289,3 +289,81 @@ class BinarySearchTree:
                     pre.right = None
                     yield current.data
                     current = current.right
+
+    # inspiration: http://cslibrary.stanford.edu/109/TreeListRecursion.html
+    def bstJoin(self, a, b):
+        a.right = b
+        b.left = a
+
+    def bstAppend(self, a, b):
+        if a == None: return b
+        if b == None: return a
+
+        aLast = a.left
+        bLast = b.left;
+
+        self.bstJoin(aLast, b);
+        self.bstJoin(bLast, a);
+
+        return a
+
+    def treeToList(self):
+        if self.data == None:
+            return None
+
+        # recursively solve subtrees -- leap of faith!
+        alist = None
+        if self.left:
+            alist = self.left.treeToList()
+
+        blist = None
+        if self.right:
+            blist = self.right.treeToList()
+
+        # Make a length-1 list ouf of the root
+        self.left = self
+        self.right = self
+
+        # Append everything together in sorted order
+        alist = self.bstAppend(alist, self)
+        alist = self.bstAppend(alist, blist)
+
+        return alist
+
+    def printList(self, dblist):
+        current = dblist
+        print "\n"
+        while current != None:
+            print current.data,
+            current = current.right
+            if current == dblist:
+                return
+        print "\n"
+
+    def bstClone(self):
+        if self.data == None:
+            return None
+        current = BinarySearchTree(self.data)
+        if self.left:
+            current.left = self.left.bstClone()
+        if self.rigth:
+            current.right = self.right.bstClone()
+
+        return current
+
+    def inOrderSuccessor(x):
+        if x.right:
+            return x.right.min()
+
+        succ = None
+        root = self
+
+        while self.data != None:
+            if x.data < root.data:
+                succ = root
+                root = root.left
+            elif x.data > root.data:
+                root = root.right
+            else:
+                break
+        return succ

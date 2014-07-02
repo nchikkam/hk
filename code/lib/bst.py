@@ -346,23 +346,27 @@ class BinarySearchTree:
         current = BinarySearchTree(self.data)
         if self.left:
             current.left = self.left.bstClone()
-        if self.rigth:
+        if self.right:
             current.right = self.right.bstClone()
 
         return current
 
-    def inOrderSuccessor(x):
-        if x.right:
-            return x.right.min()
+    def inOrderSuccessor(self):
+        if self.right:
+            temp = self.right  # same logic as min, but returning the node not value
+            while temp.left:
+                temp = temp.left
+            return temp
+
 
         succ = None
         root = self
 
         while self.data != None:
-            if x.data < root.data:
+            if self.data < root.data:
                 succ = root
                 root = root.left
-            elif x.data > root.data:
+            elif self.data > root.data:
                 root = root.right
             else:
                 break

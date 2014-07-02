@@ -237,7 +237,7 @@ class TestBinarySearchTree(unittest.TestCase):
         blist = bst.treeToList()
         bst.printList(blist)
 
-    def bstCloneTest(self):
+    def testbstClone(self):
         bst = BinarySearchTree()
         l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
         for d in l:
@@ -245,7 +245,15 @@ class TestBinarySearchTree(unittest.TestCase):
         clone = bst.bstClone()
         self.assertTrue(bst.sameTree(clone))
 
+    def testInorderSuccessor(self):
+        bst = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            bst.insert(d)
 
+        self.assertEqual(bst.right.inOrderSuccessor().data, bst.right.right.left.data)
+        self.assertEqual(bst.left.inOrderSuccessor().data, bst.left.right.left.data)
+        self.assertEqual(bst.right.right.inOrderSuccessor().data, bst.right.right.right.data)
 
 if __name__ == "__main__":
     unittest.main()

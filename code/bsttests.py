@@ -255,5 +255,41 @@ class TestBinarySearchTree(unittest.TestCase):
         self.assertEqual(bst.left.inOrderSuccessor().data, bst.left.right.left.data)
         self.assertEqual(bst.right.right.inOrderSuccessor().data, bst.right.right.right.data)
 
+    def testGetLeafCount(self):
+        bst = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            bst.insert(d)
+
+        self.assertEqual(bst.getLeafCount(), 8)
+
+        bst = BinarySearchTree()
+        bst.insert(2)
+        bst.insert(1)
+        self.assertEqual(bst.getLeafCount(), 1)
+
+        bst.insert(3)
+        self.assertEqual(bst.getLeafCount(), 2)
+
+    def testGetInternalNodesCount(self):
+        bst = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            bst.insert(d)
+
+        #self.assertEqual(bst.getInternalNodesCount(), 7)
+
+    def testWellOrderedNess(self):
+        bst = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            bst.insert(d)
+
+        self.assertTrue(bst.wellOrdered())
+
+        bst.left.data = 300
+        self.assertFalse(bst.wellOrdered())
+
+
 if __name__ == "__main__":
     unittest.main()

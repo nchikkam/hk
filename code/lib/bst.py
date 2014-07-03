@@ -371,3 +371,120 @@ class BinarySearchTree:
             else:
                 break
         return succ
+
+    def getLeafCount(self):
+        if self.data == None:
+            return 0
+        if self.left == None and self.right == None:
+            return 1
+        else:
+            c = 0
+            if self.left:
+                c += self.left.getLeafCount()
+            if self.right:
+                c += self.right.getLeafCount()
+            return c
+
+    def getInternalNodesCount(self):
+        if self.left == None and self.right == None:
+            return 0
+        else:
+            c = 0
+            if self.left and self.right:
+                c += 1
+
+            if self.left:
+                c += self.left.getLeafCount()
+            if self.right:
+                c += self.right.getLeafCount()
+
+            return c
+
+    # compose tree from given two traversal orders
+
+    def createBST(self, inOrder, preOrder):
+        pass
+        #ToDo:
+
+    """
+    create_tree(int inorder[], int preorder[],
+        int startIndex, int endIndex){
+
+        static int preIndex =0;
+
+        int i =0;
+        if(startIndex > endIndex)
+        return NULL;
+        Node * temp = (Node *)malloc(sizeof(Node));
+        if(temp){
+        /* Take next preorder element and peg it as root */
+
+        temp->value = preorder[preIndex++];
+        if(startIndex == endIndex) return temp ;
+
+        /* Search for the element in inorder traversal */
+        int index = search_inorder(inorder,temp->value,
+        startIndex, endIndex);
+
+
+        /*All elements in left side form left sub tree */
+
+        temp->left = create_tree(inorder, preorder,
+        startIndex, index-1 );
+        /*All elements in right side form right sub tree */
+        temp->right = create_tree(inorder, preorder,
+        index+1, endIndex );
+        return temp;
+        }
+        return NULL;
+        }
+        int search_inorder(int inorder[], int elem, int start, int end){
+
+        int i;
+        for(i=start;i<=end; i++){
+        if(inorder[i]== elem)
+        return i;
+        }
+        return -1;
+        }
+    """
+
+
+    def wellOrdered(self):
+        if self.data == None:
+            return True # single node, well ordered.
+        elif self.left and self.data < self.left.data:
+            return  False
+        elif self.right and self.data > self.right.data:
+            return False
+
+        leftFlag, rightFlag = True, True
+        if self.left:
+            leftFlat = self.left.wellOrdered()
+
+        if self.right:
+            rightFlag = self.right.wellOrdered()
+
+        return leftFlag and rightFlag
+
+    def bfsTraversal(self):
+        pass
+
+
+"""
+void levelOrder(node* root){
+ node* queue[100]; //queue
+ int front = 0;
+ int rear = 0;
+ if( root == NULL ) return;
+ queue[rear++] = root;
+ while(front!=rear){
+    node* tmp =  queue[front++];
+    cout << tmp->n << " ";
+    if( tmp->left != NULL)
+        queue[rear++] = tmp->left;
+    if( tmp->right != NULL )
+        queue[rear++] = tmp->right;
+ }
+}
+"""

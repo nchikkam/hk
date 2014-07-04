@@ -401,54 +401,38 @@ class BinarySearchTree:
             return c
 
     # compose tree from given two traversal orders
+    @staticmethod
+    def createBSTFromTwoTraversals(
+                                  inOrder,
+                                  preOrder,
+                                  startIndex,
+                                  endIndex):
+        if startIndex > endIndex:
+            return None
 
-    def createBST(self, inOrder, preOrder):
-        pass
-        #ToDo:
+        # make first element in the preOrder list as root
+        bst = BinarySearchTree()
+        data = preOrder.pop(0)
+        bst.insert(data)
 
-    """
-    create_tree(int inorder[], int preorder[],
-        int startIndex, int endIndex){
+        # find the position of this element in the inOrder list
+        n = BinarySearchTree.findPosition(inOrder, data, startIndex, endIndex)
 
-        static int preIndex =0;
+        # all the elements left of this 'n' fall in the left sub tree
+        bst.left = BinarySearchTree.createBSTFromTwoTraversals(inOrder, preOrder, startIndex, n-1)
 
-        int i =0;
-        if(startIndex > endIndex)
-        return NULL;
-        Node * temp = (Node *)malloc(sizeof(Node));
-        if(temp){
-        /* Take next preorder element and peg it as root */
+        # all the elements right of this 'n' fall in the right sub tree
+        bst.right = BinarySearchTree.createBSTFromTwoTraversals(inOrder, preOrder, n+1, endIndex)
 
-        temp->value = preorder[preIndex++];
-        if(startIndex == endIndex) return temp ;
+        return bst
 
-        /* Search for the element in inorder traversal */
-        int index = search_inorder(inorder,temp->value,
-        startIndex, endIndex);
-
-
-        /*All elements in left side form left sub tree */
-
-        temp->left = create_tree(inorder, preorder,
-        startIndex, index-1 );
-        /*All elements in right side form right sub tree */
-        temp->right = create_tree(inorder, preorder,
-        index+1, endIndex );
-        return temp;
-        }
-        return NULL;
-        }
-        int search_inorder(int inorder[], int elem, int start, int end){
-
-        int i;
-        for(i=start;i<=end; i++){
-        if(inorder[i]== elem)
-        return i;
-        }
-        return -1;
-        }
-    """
-
+    @staticmethod
+    def findPosition(list, data, st, end):
+        while st <= end:
+            if list[st] == data:
+                return st
+            st += 1
+        return None
 
     def wellOrdered(self):
         if self.data == None:
@@ -468,23 +452,14 @@ class BinarySearchTree:
         return leftFlag and rightFlag
 
     def bfsTraversal(self):
-        pass
-
-
-"""
-void levelOrder(node* root){
- node* queue[100]; //queue
- int front = 0;
- int rear = 0;
- if( root == NULL ) return;
- queue[rear++] = root;
- while(front!=rear){
-    node* tmp =  queue[front++];
-    cout << tmp->n << " ";
-    if( tmp->left != NULL)
-        queue[rear++] = tmp->left;
-    if( tmp->right != NULL )
-        queue[rear++] = tmp->right;
- }
-}
-"""
+        q = [] # queue to store the nodes in BFS Order
+        if self.data == None:
+            return
+        q.append(self)
+        while len(q) > 0:
+            current = q.pop(0)
+            yield current.data
+            if current.left:
+                q.append(current.left)
+            if current.right:
+                q.append(current.right)

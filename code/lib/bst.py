@@ -463,3 +463,27 @@ class BinarySearchTree:
                 q.append(current.left)
             if current.right:
                 q.append(current.right)
+
+
+    def diameter(self):
+        """
+        diametter of a tree is similar to the graph. The max no of nodes or vertices exist
+        in the tree with longest path between them.
+        """
+        if self.data != None:
+            lh, rh = 0, 0
+
+            if self.left:
+                lh = self.left.getDepth()
+            if self.right:
+                rh = self.right.getDepth()
+
+            ld, rd = 0, 0
+            if self.left:
+                ld = self.left.diameter()
+            if self.right:
+                rd = self.right.diameter()
+
+            return max(lh + rh +1, ld, rd)
+
+        return 0

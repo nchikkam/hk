@@ -314,5 +314,30 @@ class TestBinarySearchTree(unittest.TestCase):
 
         self.assertTrue(bst.sameTree(bstFromTraversals))
 
+    def testDiameter(self):
+        bstOne = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            bstOne.insert(d)
+
+        self.assertEqual(bstOne.diameter(), 7)
+
+        # single node
+        b = BinarySearchTree()
+        b.insert(8)
+        self.assertEqual(b.diameter(), 1)
+
+        b.insert(4)
+        self.assertEqual(b.diameter(), 2)
+
+
+        bstTwo = BinarySearchTree()
+        l = [8, 2, 1, 4, 5, 3, 9, 10, 15, 13, 12, 14, 18]
+        for v in l:
+            bstTwo.insert(v)
+
+        self.assertEqual(bstTwo.diameter(), 9)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -487,3 +487,15 @@ class BinarySearchTree:
             return max(lh + rh +1, ld, rd)
 
         return 0
+
+    def getRadiusList(self, l):
+        if l > 0 and self.data != None:
+            if self.left:
+                for g in self.left.getRadiusList(l-1):
+                    yield g
+            if self.right:
+                for g in self.right.getRadiusList(l-1):
+                    yield g
+        else:
+            yield self.data
+

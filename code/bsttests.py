@@ -338,6 +338,73 @@ class TestBinarySearchTree(unittest.TestCase):
 
         self.assertEqual(bstTwo.diameter(), 9)
 
+    def testRadius(self):
+        """
+        Given a binary tree find all the nodes at k distance from a given node.
+       """
+        bst = BinarySearchTree()
+        l = [8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15]
+        for d in l:
+            bst.insert(d)
+
+        k2list = [2, 6, 10, 14]
+        k3list = [1, 3, 5, 7, 9, 11, 13, 15]
+        k2gen = bst.getRadiusList(2)
+        for v in k2gen:
+            self.assertTrue(v in k2list)
+
+        k3gen = bst.getRadiusList(3)
+        for v in k3gen:
+            self.assertTrue(v in k3list)
+
+        k1gen = bst.getRadiusList(1)
+        for v in k1gen:
+            self.assertTrue(v in [4, 12])
+
+        k0gen = bst.getRadiusList(0)
+        for v in k0gen:
+            self.assertTrue(v in [8])
+
+
+        # try with different tree structure
+        """
+                       8             -----------------> radius 0 =>[8]
+                    /    \
+                 2         9         -----------------> radius 1 =>[2, 9]
+               /  \         \
+             1     4         10      -----------------> radius 2 =>[1, 4, 10]
+                  / \          \
+                3    5         15    -----------------> radius 3 =>[3, 5, 15]
+                              /  \
+                            13    18 -----------------> radius 1 =>[13, 18]
+                           /  \
+                         12    14    -----------------> radius 1 =>[12, 14]
+        """
+        bstTwo = BinarySearchTree()
+        l = [8, 2, 1, 4, 5, 3, 9, 10, 15, 13, 12, 14, 18]
+        for v in l:
+            bstTwo.insert(v)
+
+        k3gen = bstTwo.getRadiusList(3)
+        k3list = [3, 5, 15]
+        for v in k3gen:
+            self.assertTrue(v in k3list)
+
+        k4gen = bstTwo.getRadiusList(4)
+        k4list = [13, 18]
+        for v in k4gen:
+            self.assertTrue(v in k4list)
+
+        k5gen = bstTwo.getRadiusList(5)
+        k5list = [12, 14]
+        for v in k5gen:
+            self.assertTrue(v in k5list)
+
+    """
+    Given a binary tree serialize the tree such that it can be retrieved in the same form again
+    Merge two binary search trees [http://disqus.com/alienonearth/]
+    Find the maximum path sum between two leaves of a binary tree
+    """
 
 if __name__ == "__main__":
     unittest.main()

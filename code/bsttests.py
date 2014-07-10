@@ -1,6 +1,7 @@
 import unittest
 from lib.bst import (
-    BinarySearchTree
+    BinarySearchTree,
+    BinaryTree
 )
 
 class TestBinarySearchTree(unittest.TestCase):
@@ -400,11 +401,62 @@ class TestBinarySearchTree(unittest.TestCase):
         for v in k5gen:
             self.assertTrue(v in k5list)
 
+#class TestBinaryTree(unittest.TestCase):
     """
     Given a binary tree serialize the tree such that it can be retrieved in the same form again
     Merge two binary search trees [http://disqus.com/alienonearth/]
     Find the maximum path sum between two leaves of a binary tree
+    Nice Link: https://www.cs.duke.edu/~ola/courses/cps100spr96/tree/trees.html
+    checck the 12 points problem on the above page
     """
+    def testBinaryTreeCreate(self):
+        l = [-15, 5, 6, -8, 1, 3, 9, 2, 6, None, None, None, None, 4, 0, None, None, None, None, None, None, None, -1, 10, None]
+        """
+                  -15
+                 /    \
+                5      6
+              /  \    / \
+            -8    1  3   9
+           /  \        /  \
+         2     6      4    6
+                            \
+                            -1
+                           /
+                         10
+
+        """
+        bt = BinaryTree()
+        bt.create(l)
+
+        expectedInorder = [2, -8, 6, 5, 1, -15, 3, 6, 4, 9, 0, 10, -1]
+        g = bt.inOrder()
+        for v in expectedInorder:
+            self.assertEqual(v, g.next())
+
+    def testBTGetMaxPathSum(self):
+        l = [-15, 5, 6, -8, 1, 3, 9, 2, 6, None, None, None, None, 4, 0, None, None, None, None, None, None, None, -1, 10, None]
+        bt = BinaryTree()
+        bt.create(l)
+
+        self.assertEqual(bt.getMaxPathSum()[1], 27)
+
+    def testSum(self):
+        l = [-15, 5, 6, -8, 1, 3, 9, 2, 6, None, None, None, None, 4, 0, None, None, None, None, None, None, None, -1, 10, None]
+        s = 0
+        for v in l:
+            if v: s += v
+
+        bt = BinaryTree()
+        bt.create(l)
+
+        self.assertEqual(bt.sum(), s)
+
+        bstTwo = BinarySearchTree()
+        l = [8, 2, 1, 4, 5, 3, 9, 10, 15, 13, 12, 14, 18]
+        for v in l:
+            bstTwo.insert(v)
+
+        self.assertEqual(bstTwo.sum(), sum(l))
 
 if __name__ == "__main__":
     unittest.main()

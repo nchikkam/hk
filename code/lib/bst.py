@@ -1,4 +1,92 @@
-class BinarySearchTree:
+class BinaryTree:
+
+    def __init__(self, data = None):
+        self.data = data
+        self.left = None
+        self.right = None
+
+    def create(self, l):
+        q = []
+        data = l.pop(0)
+        self.data = data
+        q.append(self)
+
+        while len(l) > 0:
+            current = q.pop(0)
+            ldata = l.pop(0)
+            rdata = l.pop(0)
+            if ldata != None:
+                current.left = BinaryTree(ldata)
+                q.append(current.left)
+
+            if rdata!= None:
+                current.right = BinaryTree(rdata)
+                q.append(current.right)
+
+    def getMaxPathSum(self):
+        # result[0] is the up-to-node max-sum, current node must be included
+        # result[1] is the max-sum of a tree, rooted this node
+        result = [0, 0]
+        if self.data == None:
+            return result
+
+        l, r = [0, 0], [0, 0]
+        if self.left:
+            l = self.left.getMaxPathSum()
+
+        if self.right:
+            r = self.right.getMaxPathSum()
+
+        result[0] = self.data + max(0, max(l[0], r[0]))
+
+        maxOfChild = max(l[1], r[1]) # max sum of path
+        maxSumThroughRoot = max(0,l[0]) + self.data + max(0, r[0]);
+        result[1] = max(maxOfChild, maxSumThroughRoot);
+        return result
+
+    def sum(self):
+        if self.data != None:
+            lsum, rsum = 0, 0
+            if self.left:
+                lsum = self.left.sum()
+
+            if self.right:
+                rsum = self.right.sum()
+
+            return lsum + self.data + rsum
+        return 0
+
+    def preOrder(self):
+        yield self.data
+        if self.left:
+            for v in self.left.preOrder():
+                yield v
+        if self.right:
+            for v in self.right.preOrder():
+                yield v
+
+    def inOrder(self): #lazy mode, iterators :)
+        if self.left:
+            for v in self.left.inOrder():
+                yield v
+
+        yield self.data
+
+        if self.right:
+            for v in self.right.inOrder():
+                yield v
+
+    def postOrder(self):
+        if self.left:
+            for v in self.left.postOrder():
+                yield v
+        if self.right:
+            for v in self.right.postOrder():
+                yield v
+        yield self.data
+
+
+class BinarySearchTree(BinaryTree):
 
     def __init__(self, data=None):
         self.left = None
@@ -47,34 +135,7 @@ class BinarySearchTree:
           return False
         """
 
-    def preOrder(self):
-        yield self.data
-        if self.left:
-            for v in self.left.preOrder():
-                yield v
-        if self.right:
-            for v in self.right.preOrder():
-                yield v
 
-    def inOrder(self): #lazy mode, iterators :)
-        if self.left:
-            for v in self.left.inOrder():
-                yield v
-
-        yield self.data
-
-        if self.right:
-            for v in self.right.inOrder():
-                yield v
-
-    def postOrder(self):
-        if self.left:
-            for v in self.left.postOrder():
-                yield v
-        if self.right:
-            for v in self.right.postOrder():
-                yield v
-        yield self.data
 
     def delete(self, data):
         if data == self.data:

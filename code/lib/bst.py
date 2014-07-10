@@ -85,6 +85,34 @@ class BinaryTree:
                 yield v
         yield self.data
 
+    # private method that helps in finding the symmetric flag of the tree
+    def compareChilds(self, l, r):
+        if l == None and r == None:
+            return True
+
+        if l == None or r == None:
+            return False
+
+        if l.data == r.data : # when data is similar at this node
+
+            return self.compareChilds(l.left,r.right) and self.compareChilds(l.right,r.left)
+        else:
+            return False
+
+    def isSymmetric(self):
+        """
+        prologsite/prolog-problems/4
+                  8     -> This Binary Tree is Symmetric
+                /  \
+               4    4
+             /  \  / \
+           1    3 3   1
+        """
+        if self.data == None:
+            return True
+
+        return self.compareChilds(self.left, self.right)
+
 
 class BinarySearchTree(BinaryTree):
 

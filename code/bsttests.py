@@ -458,5 +458,103 @@ class TestBinarySearchTree(unittest.TestCase):
 
         self.assertEqual(bstTwo.sum(), sum(l))
 
+    def testBSTSymmetricity(self):
+
+        # Single node
+        l = [9]
+        bt = BinaryTree()
+        bt.create(l)
+
+        # case-1:
+        l = [8, 4, 4, 1, 3, 3, 1]
+        """
+                  8     -> This Binary Tree is Symmetric
+                /  \
+               4    4
+             /  \  / \
+           1    3 3   1
+        """
+        bt = BinaryTree()
+        bt.create(l)
+
+        self.assertTrue(bt.isSymmetric())
+
+
+
+        self.assertTrue(bt.isSymmetric())
+
+        l = [8, 4, 4, None, 3, 3, None]
+        """
+                  8
+                /  \
+               4    4
+                \  /
+                3 3
+        """
+        bt = BinaryTree()
+        bt.create(l)
+
+        self.assertTrue(bt.isSymmetric())
+
+        l = [8, 4, 4, None, 3, 3, 1, None, None, None, None, None, None]
+        """
+                  8
+                /  \
+               4    4
+                \  / \
+                3 3   1
+        """
+        bt = BinaryTree()
+        bt.create(l)
+
+        self.assertFalse(bt.isSymmetric())
+
+        # case-2:
+        l = [8, 4, 4, 1, None, None, 1, None, None, None, None]
+        """
+                  8
+                /  \
+               4    4
+             /       \
+            1         1
+        """
+        bt = BinaryTree()
+        bt.create(l)
+
+        self.assertTrue(bt.isSymmetric())
+
+        # case-2.1:
+        l = [8, 4, 4, 1, 3, None, 1, None, None, None, None, None, None]
+        """
+                  8
+                /  \
+               4    4
+             /  \    \
+            1   3     1
+        """
+        bt = BinaryTree()
+        bt.create(l)
+
+        self.assertFalse(bt.isSymmetric())
+
+        # case-3
+        l = [8, 4, 4, 2, 2, 2, 2, -2, 9, 9, -2, -2, 9, 9, -2, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+        """
+                     8     -> This Binary Tree is Symmetric
+                 /      \
+               4          4
+             /  \        /  \
+           2     2      2    2
+         /  \   / \    / \   / \
+       -2   9  9  -2  -2  9 9  -2
+        """
+        bt = BinaryTree()
+        bt.create(l)
+
+        self.assertTrue(bt.isSymmetric())
+
+
+
+
 if __name__ == "__main__":
     unittest.main()

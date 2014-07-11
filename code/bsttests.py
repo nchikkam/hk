@@ -567,11 +567,5 @@ class TestBinarySearchTree(unittest.TestCase):
 
         self.assertTrue(bt.isSymmetric(False)) # don't compare data, but structure ;)
 
-
-
-
-
-
-
 if __name__ == "__main__":
     unittest.main()

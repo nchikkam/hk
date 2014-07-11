@@ -477,11 +477,11 @@ class TestBinarySearchTree(unittest.TestCase):
         bt = BinaryTree()
         bt.create(l)
 
-        self.assertTrue(bt.isSymmetric())
+        self.assertTrue(bt.isSymmetric(True))
 
 
 
-        self.assertTrue(bt.isSymmetric())
+        self.assertTrue(bt.isSymmetric(True))
 
         l = [8, 4, 4, None, 3, 3, None]
         """
@@ -494,7 +494,7 @@ class TestBinarySearchTree(unittest.TestCase):
         bt = BinaryTree()
         bt.create(l)
 
-        self.assertTrue(bt.isSymmetric())
+        self.assertTrue(bt.isSymmetric(True))
 
         l = [8, 4, 4, None, 3, 3, 1, None, None, None, None, None, None]
         """
@@ -521,7 +521,7 @@ class TestBinarySearchTree(unittest.TestCase):
         bt = BinaryTree()
         bt.create(l)
 
-        self.assertTrue(bt.isSymmetric())
+        self.assertTrue(bt.isSymmetric(True))
 
         # case-2.1:
         l = [8, 4, 4, 1, 3, None, 1, None, None, None, None, None, None]
@@ -535,7 +535,7 @@ class TestBinarySearchTree(unittest.TestCase):
         bt = BinaryTree()
         bt.create(l)
 
-        self.assertFalse(bt.isSymmetric())
+        self.assertFalse(bt.isSymmetric(True))
 
         # case-3
         l = [8, 4, 4, 2, 2, 2, 2, -2, 9, 9, -2, -2, 9, 9, -2, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
@@ -551,7 +551,24 @@ class TestBinarySearchTree(unittest.TestCase):
         bt = BinaryTree()
         bt.create(l)
 
-        self.assertTrue(bt.isSymmetric())
+        self.assertTrue(bt.isSymmetric(True))
+
+        # compare just the structure and exclude data from the comparison
+        l = [8, 4, 5, 4, 9, 8, 7]
+        """
+                  8     -> This Binary Tree is Symmetric
+                /  \
+               4    5
+             /  \  / \
+           4    9 8   7
+        """
+        bt = BinaryTree()
+        bt.create(l)
+
+        self.assertTrue(bt.isSymmetric(False)) # don't compare data, but structure ;)
+
+
+
 
 
 

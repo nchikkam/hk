@@ -51,5 +51,11 @@ class Graph:
     def __iter__(self):
         return iter(self.v.values())
 
+    def getNeighbours(self,  vertex):
+        if vertex not in self.v.keys():
+            raise "Node %s not in graph" % vertex
+        return self.v[vertex].neighbours.keys()
+
+
 
 

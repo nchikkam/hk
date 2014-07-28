@@ -1,3 +1,5 @@
+import itertools
+
 class Vertex:
     def __init__(self, id):
         self.id = id
@@ -10,7 +12,7 @@ class Vertex:
         return str(self.id) + ' Neighbours: ' + str(self.neighbours.keys())
 
     def getNeighbours(self):
-        return self.neighbours.keys()
+        return self.neighbours #.keys()
 
     def getName(self):
         return self.id
@@ -54,7 +56,38 @@ class Graph:
     def getNeighbours(self,  vertex):
         if vertex not in self.v.keys():
             raise "Node %s not in graph" % vertex
-        return self.v[vertex].neighbours.keys()
+        return self.v[vertex].neighbours #.keys()
+
+    def getEdges(self):
+        edges = []
+
+        for node in self.v.keys():
+            neighbours = self.v[node].getNeighbours()
+            for w in neighbours:
+                edges.append((node, w, neighbours[w])) #tuple, srcVertex, dstVertex, weightBetween
+        return edges
+
+    def findIsolated(self):
+        isolated = []
+        for node in self.v:
+            deadNode = False
+            reachable = True
+            # dead node, can't reach any other node from this
+            if len(self.v[node].getNeighbours()) == 0:
+                deadNode = True
+
+            # reachable from other nodes ?
+            nbrs = [n.neighbours.keys() for n in self.v.values()]
+            # flatten the nested list
+            nbrs = list(itertools.chain(*nbrs))
+
+            if node not in nbrs:
+                reachable = False
+
+            if deadNode == True and reachable == False:
+                isolated.append(node)
+
+        return isolated
 
 
 

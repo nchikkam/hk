@@ -25,11 +25,6 @@ class GraphTests(unittest.TestCase):
         self.g = None
 
     def testBasic(self):
-
-        #for v in self.g:
-        #    for w in v.getNeighbours():
-        #        print("( %s , %s )" % (v.getName(), w))
-
         for v in self.g.getVertices():
             self.assertTrue(v in range(7))
 
@@ -54,10 +49,28 @@ class GraphTests(unittest.TestCase):
         for v in four_s_nbrs:
             self.assertTrue(v in self.g.getNeighbours(4))
 
+    def testEdges(self):
+        expected_edges = [
+            (0, 1, 6),
+            (0, 2, 4),
+            (1, 2, 3),
+            (1, 5, 7),
+            (2, 3, 9),
+            (2, 4, 1),
+            (3, 4, 1),
+            (4, 5, 5),
+            (4, 6, 2)
+        ]
+        edges = self.g.getEdges()
+        for edge in expected_edges:
+            self.assertTrue(edge in edges)
+
+    def testIsolatedVertex(self):
+        self.g.addVertex(10)
+        isolated = self.g.findIsolated()
 
 
-
-
+        self.assertTrue(10 in isolated)
 
 if __name__ == "__main__":
     unittest.main()

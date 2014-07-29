@@ -133,6 +133,23 @@ class GraphTests(unittest.TestCase):
     def testDegreeSumFormula(self):
         self.assertTrue(self.g.verifyDegreeSumFormula())
 
+    def testMinDegreeOfGraphV(self):
+        self.assertEqual(self.g.delta(), 1)
+
+        #add a isolated vertex and check the degree 0
+        self.g.addVertex(10)
+        self.assertEqual(self.g.delta(), 0)
+
+    def testMaxDegreeOfGraphV(self):
+        self.assertEqual(self.g.Delta(), 4)
+
+    def testDegreeSequence(self):
+        expected = (4, 4, 3, 2, 2, 2, 1)
+        self.assertEqual(self.g.degreeSequence(), expected)
+
+
+
+
 
 if __name__ == "__main__":
     unittest.main()

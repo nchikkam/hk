@@ -155,3 +155,39 @@ class Graph:
 
         return degSum == (2* len(self.getEdges()))
 
+    def delta(self):
+        """ the minimum degree of the Graph V """
+        min = 2**64
+        for vertex in self.v:
+            vertex_degree = self.getDegree(vertex)
+            if vertex_degree < min:
+                min = vertex_degree
+        return min
+
+    def Delta(self):
+        """ the maximum degree of the Graph V """
+        max = -2**64
+        for vertex in self.v:
+            vertex_degree = self.getDegree(vertex)
+            if vertex_degree > max:
+                max = vertex_degree
+        return max
+
+    def degreeSequence(self):
+        """
+           degree sequence is the reverse sorder of the vertices degrees
+           Isomorphic graphs have the same degree sequence. However,
+           two graphs with the same degree sequence are not necessarily
+           isomorphic.
+           More-Info:
+           http://en.wikipedia.org/wiki/Graph_realization_problem
+        """
+        seq = []
+        for vertex in self.v:
+            seq.append(self.getDegree(vertex))
+        seq.sort(reverse=True)
+        return tuple(seq)
+
+    #http://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Gallai_theorem
+
+

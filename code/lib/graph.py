@@ -153,8 +153,5 @@ class Graph:
         for v in self.v:
             degSum += self.getDegree(v)
 
-        print degSum
-        print 2* len(self.getEdges())
-
         return degSum == (2* len(self.getEdges()))
 

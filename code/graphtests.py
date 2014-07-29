@@ -88,6 +88,51 @@ class GraphTests(unittest.TestCase):
         for path in expectedPaths:
             self.assertTrue(path in paths)
 
+    def testInDegree(self):
+        self.g.addVertex(10)
+        expectedDegrees = [(0, 0),  # 0 vertex has 0 edges going to it
+                           (1, 1),
+                           (2, 2),
+                           (3, 1),
+                           (4, 2),
+                           (5, 2),
+                           (6, 1),
+                           (10, 0)
+                           ]
+        for (vertex, inDegree) in expectedDegrees:
+            self.assertEqual(self.g.inDegree(vertex), inDegree)
+
+    def testOutDegree(self):
+        self.g.addVertex(10)
+        expectedDegrees = [(0, 2),  # 0 vertex has 2 edges going from it
+                           (1, 2),
+                           (2, 2),
+                           (3, 1),
+                           (4, 2),
+                           (5, 0),
+                           (6, 0),
+                           (10, 0)
+                           ]
+        for (vertex, outDegree) in expectedDegrees:
+            self.assertEqual(self.g.outDegree(vertex), outDegree)
+
+    def testDegree(self):
+        self.g.addVertex(10)
+        expectedDegrees = [(0, 2),  # 0 vertex has 2 edges
+                           (1, 3),
+                           (2, 4),
+                           (3, 2),
+                           (4, 4),
+                           (5, 2),
+                           (6, 1),
+                           (10, 0)
+                           ]
+        for (vertex, degree) in expectedDegrees:
+            self.assertEqual(self.g.getDegree(vertex), degree)
+
+    def testDegreeSumFormula(self):
+        self.assertTrue(self.g.verifyDegreeSumFormula())
+
 
 if __name__ == "__main__":
     unittest.main()

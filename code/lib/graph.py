@@ -24,10 +24,10 @@ class Graph:
 
     def __init__(self):
         self.v = {}
-        self.degree = 0
+        self.count = 0
 
     def addVertex(self, key):
-        self.degree += 1
+        self.count += 1
         newV = Vertex(key)
         self.v[key] = newV
 
@@ -98,8 +98,8 @@ class Graph:
         for vertex in self.v[start].getNeighbours():
             if vertex not in path:
                 extended_path = self.getPath(vertex,
-                                               end,
-                                               path)
+                                            end,
+                                            path)
                 if extended_path:
                     return extended_path
         return None
@@ -121,6 +121,40 @@ class Graph:
                     paths.append(p)
         return paths
 
+    def inDegree(self, vertex):
+        """
+           how many edges coming into this vertex
+        """
+        nbrs = [n.neighbours.keys() for n in self.v.values()]
+        # flatten the nested list
+        nbrs = list(itertools.chain(*nbrs))
+
+        return nbrs.count(vertex)
+
+    def outDegree(self, vertex):
+        """
+           how many vertices are neighbours to this vertex
+        """
+        adj_vertices =  self.v[vertex].getNeighbours()
+        return len(adj_vertices)
 
 
+    """
+       The degree of a vertex is the no of edges connecting to it.
+       loop is counted twice
+       for an undirected Graph deg(v) = indegree(v) + outdegree(v)
+    """
+    def getDegree(self, vertex):
+        return self.inDegree(vertex) + self.outDegree(vertex)
+
+    def verifyDegreeSumFormula(self):
+        """Handshaking lemma - Vdeg(v) = 2 |E| """
+        degSum = 0
+        for v in self.v:
+            degSum += self.getDegree(v)
+
+        print degSum
+        print 2* len(self.getEdges())
+
+        return degSum == (2* len(self.getEdges()))
 

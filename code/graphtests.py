@@ -68,9 +68,26 @@ class GraphTests(unittest.TestCase):
     def testIsolatedVertex(self):
         self.g.addVertex(10)
         isolated = self.g.findIsolated()
-
-
         self.assertTrue(10 in isolated)
+
+    def testGetPath(self):
+        path = self.g.getPath(0, 6, [])
+        self.assertEquals(path, [0, 1, 2, 3, 4, 6])
+
+        path = self.g.getPath(0, 10, [])
+        self.assertEquals(None, path)
+
+    def testGetAllPaths(self):
+        expectedPaths = [[0, 1, 2, 3, 4, 6],
+                         [0, 1, 2, 4, 6],
+                         [0, 2, 3, 4, 6],
+                         [0, 2, 4, 6]
+                        ]
+        paths = self.g.getAllPaths(0, 6, [])
+
+        for path in expectedPaths:
+            self.assertTrue(path in paths)
+
 
 if __name__ == "__main__":
     unittest.main()

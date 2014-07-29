@@ -89,6 +89,38 @@ class Graph:
 
         return isolated
 
+    def getPath(self, start, end, path=[]):
+        path = path + [start]
+        if start == end:
+            return path
+        if start not in self.v:
+            return None
+        for vertex in self.v[start].getNeighbours():
+            if vertex not in path:
+                extended_path = self.getPath(vertex,
+                                               end,
+                                               path)
+                if extended_path:
+                    return extended_path
+        return None
+
+    def getAllPaths(self, start, end, path=[]):
+        path = path + [start]
+        if start == end:
+            return [path]
+        if start not in self.v:
+            return []
+
+        paths = []
+        for vertex in self.v[start].getNeighbours():
+            if vertex not in path:
+                extended_paths = self.getAllPaths(vertex,
+                                                  end,
+                                                  path)
+                for p in extended_paths:
+                    paths.append(p)
+        return paths
+
 
 
 

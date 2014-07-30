@@ -188,6 +188,22 @@ class Graph:
         seq.sort(reverse=True)
         return tuple(seq)
 
-    #http://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Gallai_theorem
+    # helper to check if the given sequence is in non-increasing Order ;)
+    @staticmethod
+    def sortedInDescendingOrder(seq):
+        return all (x>=y for x,y in zip(seq, seq[1:]))
 
-
+    @staticmethod
+    def isGraphicSequence(seq):
+      """
+       Assumes that the degreeSequence is a list of non negative integers
+       http://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Gallai_theorem
+      """
+      # Check to ensure there are an even number of odd degrees
+      if sum(seq)%2 != 0: return False
+      # Erdos-Gallai theorem
+      for k in range(1, len(seq)+1):
+        leftSum = sum(seq[:(k)])
+        rightSum = k * (k-1) + sum([min(x, k) for x in seq[k:]])
+        if leftSum > rightSum: return False
+      return True

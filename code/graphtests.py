@@ -147,6 +147,19 @@ class GraphTests(unittest.TestCase):
         expected = (4, 4, 3, 2, 2, 2, 1)
         self.assertEqual(self.g.degreeSequence(), expected)
 
+    def testErdosGallaiTheorem(self):
+        self.assertTrue(Graph.isGraphicSequence([2, 2, 2, 2, 1, 1]))
+        self.assertTrue(Graph.isGraphicSequence([3, 3, 3, 3, 3, 3]))
+        self.assertTrue(Graph.isGraphicSequence([3, 3, 2, 1, 1]))
+
+        self.assertFalse(Graph.isGraphicSequence([4, 3, 2, 2, 2, 1, 1]))
+        self.assertFalse(Graph.isGraphicSequence([6, 6, 5, 4, 4, 2, 1]))
+        self.assertFalse(Graph.isGraphicSequence([3, 3, 3, 1]))
+
+
+
+
+
 
 
 

@@ -207,3 +207,27 @@ class Graph:
         rightSum = k * (k-1) + sum([min(x, k) for x in seq[k:]])
         if leftSum > rightSum: return False
       return True
+
+    @staticmethod
+    def isGraphicSequenceIterative(s):
+        # successively reduce degree sequence by removing node of maximum degree
+        # as in Havel-Hakimi algorithm
+        while s:
+            s.sort()    # sort in increasing order
+            if s[0]<0:
+                return False  # check if removed too many from some node
+
+            d=s.pop()             # pop largest degree
+            if d==0: return True  # done! rest must be zero due to ordering
+
+            # degree must be <= number of available nodes
+            if d>len(s):   return False
+
+            # remove edges to nodes of next higher degrees
+            #s.reverse()  # to make it easy to get at higher degree nodes.
+            for i in range(len(s)-1,len(s)-(d+1),-1):
+                s[i]-=1
+
+        # should never get here b/c either d==0, d>len(s) or d<0 before s=[]
+        return False
+

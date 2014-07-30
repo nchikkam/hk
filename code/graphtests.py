@@ -156,6 +156,16 @@ class GraphTests(unittest.TestCase):
         self.assertFalse(Graph.isGraphicSequence([6, 6, 5, 4, 4, 2, 1]))
         self.assertFalse(Graph.isGraphicSequence([3, 3, 3, 1]))
 
+    def testHavelHakimiAlgorithm(self):
+        self.assertTrue(Graph.isGraphicSequenceIterative([2, 2, 2, 2, 1, 1]))
+        self.assertTrue(Graph.isGraphicSequenceIterative([3, 3, 3, 3, 3, 3]))
+        self.assertTrue(Graph.isGraphicSequenceIterative([3, 3, 2, 1, 1]))
+
+        self.assertFalse(Graph.isGraphicSequenceIterative([4, 3, 2, 2, 2, 1, 1]))
+        self.assertFalse(Graph.isGraphicSequenceIterative([6, 6, 5, 4, 4, 2, 1]))
+        self.assertFalse(Graph.isGraphicSequenceIterative([3, 3, 3, 1]))
+
+
 
 
 

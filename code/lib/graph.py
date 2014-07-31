@@ -39,7 +39,7 @@ class Graph:
     def __contains__(self, id):
         return id in self.v.keys()
 
-    def addEdge(self, vertexOne, vertexTwo, weight): # vertexOne, vertexTwo, cost-of-the-edge
+    def addEdge(self, vertexOne, vertexTwo, weight=None): # vertexOne, vertexTwo, cost-of-the-edge
         if vertexOne not in self.v.keys():
             self.addVertex(vertexOne)
         if vertexTwo not in self.v.keys():
@@ -231,3 +231,18 @@ class Graph:
         # should never get here b/c either d==0, d>len(s) or d<0 before s=[]
         return False
 
+    def density(self):
+        """
+        In mathematics, a dense graph is a graph in which the number of edges
+        is close to the maximal number of edges. The opposite, a graph with
+        only a few edges, is a sparse graph. The distinction between sparse
+        and dense graphs is rather vague, and depends on the context.
+
+        For undirected simple graphs, the graph density is defined as:
+        D = (2*No-Of-Edges)/((v*(v-1))/2)
+        For a complete Graph, the Density D is 1
+        """
+        """ method to calculate the density of a graph """
+        V = len(self.v.keys())
+        E = len(self.getEdges())
+        return 2.0 * E / (V *(V - 1))

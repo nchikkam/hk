@@ -165,13 +165,66 @@ class GraphTests(unittest.TestCase):
         self.assertFalse(Graph.isGraphicSequenceIterative([6, 6, 5, 4, 4, 2, 1]))
         self.assertFalse(Graph.isGraphicSequenceIterative([3, 3, 3, 1]))
 
+    def testDensity(self):
+        g = Graph()
+        vertices = ['a', 'b', 'c', 'd', 'e', 'f']
+        for v in vertices:
+            g.addVertex(v)
+
+        """
+            g = { "a" : ["d","f"],
+           "b" : ["c","b"],
+           "c" : ["b", "c", "d", "e"],
+           "d" : ["a", "c"],
+           "e" : ["c"],
+           "f" : ["a"]
+        }
+        """
+        g.addEdge('a', 'd')
+        g.addEdge('a', 'f')
+        g.addEdge('b', 'c')
+        g.addEdge('b', 'b')
+        g.addEdge('c', 'c')
+        g.addEdge('c', 'd')
+        g.addEdge('c', 'e')
+
+        self.assertAlmostEqual(0.466666666667, g.density(), places=7)
+
+        """
+            complete_graph = {
+            "a" : ["b","c"],
+            "b" : ["a","c"],
+            "c" : ["a","b"]
+        }
+
+        """
+
+        complete_graph = Graph()
+        vertices = ['a', 'b', 'c']
+        for v in vertices:
+            complete_graph.addVertex(v)
+
+        complete_graph.addEdge('a', 'b')
+        complete_graph.addEdge('a', 'c')
+        complete_graph.addEdge('b', 'c')
+
+        self.assertEqual(1.0, complete_graph.density())
 
 
+        """
+        isolated_graph = {
+            "a" : [],
+            "b" : [],
+            "c" : []
+        }
+        """
 
+        isolated_graph = Graph()
+        vertices = ['a', 'b', 'c']
+        for v in vertices:
+            isolated_graph.addVertex(v)
 
-
-
-
+        self.assertEqual(0.0, isolated_graph.density())
 
 
 if __name__ == "__main__":

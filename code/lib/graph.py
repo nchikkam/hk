@@ -246,3 +246,26 @@ class Graph:
         V = len(self.v.keys())
         E = len(self.getEdges())
         return 2.0 * E / (V *(V - 1))
+
+    """
+        Choose an arbitrary node x of the graph G as the starting point
+        Determine the set A of all the nodes which can be reached from x.
+        If A is equal to the set of nodes of G, the graph is connected; otherwise
+        it is disconnected.
+    """
+    def isConnected(self, start=None):
+        if start == None:
+            start = self.v.keys()[0]
+        reachables = self.dfs(start, [])
+        return len(reachables) == len(self.v.keys())
+
+    """
+        ToDo: USE CLR Approach for this Later
+    """
+    def dfs(self, start, path = []):
+        path = path + [start]
+        for v in self.v[start].getNeighbours().keys():
+            if v not in path:
+                path = self.dfs(v, path)
+        return path
+

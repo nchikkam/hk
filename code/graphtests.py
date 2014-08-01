@@ -226,6 +226,94 @@ class GraphTests(unittest.TestCase):
 
         self.assertEqual(0.0, isolated_graph.density())
 
+    def testIsConnected(self):
+        self.assertTrue(self.g.isConnected())
+
+
+        self.g.addVertex(10)
+        self.assertFalse(self.g.isConnected())
+
+        """
+            g = { "a" : ["d"],
+          "b" : ["c"],
+          "c" : ["b", "c", "d", "e"],
+          "d" : ["a", "c"],
+          "e" : ["c"],
+          "f" : []
+        }
+        """
+        g = Graph()
+        vertices = ['a', 'b', 'c', 'd', 'e', 'f']
+        for v in vertices:
+            g.addVertex(v)
+
+        g.addEdge('a', 'd')
+        g.addEdge('b', 'c')
+        g.addEdge('c', 'd')
+        g.addEdge('c', 'e')
+
+        self.assertFalse(g.isConnected('a'))
+
+
+        """
+            g2 = {
+           "a" : ["d","f"],
+           "b" : ["c"],
+           "c" : ["b", "c", "d", "e"],
+           "d" : ["a", "c"],
+           "e" : ["c"],
+           "f" : ["a"]
+        }
+        """
+
+        g2 = Graph()
+        vertices = ['a', 'b', 'c', 'd', 'e', 'f']
+        for v in vertices:
+            g2.addVertex(v)
+
+        g2.addEdge('a', 'd')
+        g2.addEdge('a', 'f')
+        g2.addEdge('b', 'c')
+        g2.addEdge('c', 'b')
+        g2.addEdge('c', 'd')
+        g2.addEdge('d', 'a')
+        g2.addEdge('d', 'c')
+        g2.addEdge('c', 'e')
+        g2.addEdge('e', 'c')
+        g2.addEdge('f', 'a')
+
+        self.assertTrue(g2.isConnected('a'))
+
+        """
+            g3 = {
+           "a" : ["d","f"],
+           "b" : ["c","b"],
+           "c" : ["b", "c", "d", "e"],
+           "d" : ["a", "c"],
+           "e" : ["c"],
+           "f" : ["a"]
+        }
+        """
+        g3 = Graph()
+        vertices = ['a', 'b', 'c', 'd', 'e', 'f']
+        for v in vertices:
+            g3.addVertex(v)
+
+        g3.addEdge('a', 'd')
+        g3.addEdge('a', 'f')
+        g3.addEdge('b', 'c')
+        g3.addEdge('b', 'b')
+        g3.addEdge('c', 'b')
+        g3.addEdge('c', 'c')
+        g3.addEdge('c', 'd')
+        g3.addEdge('c', 'e')
+        g3.addEdge('d', 'a')
+        g3.addEdge('d', 'c')
+        g3.addEdge('e', 'c')
+        g3.addEdge('f', 'a')
+
+        self.assertTrue(g3.isConnected('a'))
+
 
 if __name__ == "__main__":
     unittest.main()

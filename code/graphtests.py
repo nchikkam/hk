@@ -315,5 +315,16 @@ class GraphTests(unittest.TestCase):
         self.assertTrue(g3.isConnected('a'))
 
 
+    def testCLRDfs(self):
+
+        paths = self.g.CLR_Dfs()
+        self.assertEqual(len(paths), 1)
+
+        self.g.addEdge(1, 0, 2) # add a edge from 1 to 0 to make possible paths 2
+        paths = self.g.CLR_Dfs()
+        self.assertEqual(len(paths), 2)
+
+
+
 if __name__ == "__main__":
     unittest.main()

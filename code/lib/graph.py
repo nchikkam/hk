@@ -269,3 +269,15 @@ class Graph:
                 path = self.dfs(v, path)
         return path
 
+    """
+       CLR Sytle
+    """
+    def CLR_Dfs(self):
+        paths = []
+
+        for v in self.v.keys():
+            explored = self.dfs(v, [])
+            if len(explored) == len(self.v.keys()):
+                paths.append(explored)
+        return paths
+

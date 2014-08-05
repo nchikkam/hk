@@ -310,12 +310,12 @@ class Graph:
 
         return (discovered, parent)
 
-    def findPath(self, start, end, parents):
+    def findPath(self, start, end, parents, path):
         if ((start == end) or (end == -1)):
-            yield start
+            path.append(start)
         else:
-            for n in self.findPath(start, parents[end], parents):
-                yield n
+            self.findPath(start, parents[end], parents, path)
+            path.append(end)
 
 
 

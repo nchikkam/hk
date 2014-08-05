@@ -339,22 +339,22 @@ class GraphTests(unittest.TestCase):
         ss_g.addEdge(2, 3)
         ss_g.addEdge(3, 4)
 
-
         (discovered, parents) = ss_g.BFS(0)
         expectePath = [0, 1, 2, 3]
-        iter = ss_g.findPath(0, 3, parents)
-        i = 0
-        for p in iter:
-            self.assertEqual(expectePath[i], p)
+        vPath = []
+        ss_g.findPath(0, 3, parents, vPath)
+        for (x, y) in zip(expectePath, vPath):
+            self.assertEqual(x, y)
 
-        # now add an edge from 4 to 3 to to shorten the path
+
+        # add an edge between 4 and 3 to short cut for testing new path
         ss_g.addEdge(4, 3)
         (discovered, parents) = ss_g.BFS(0)
         expectePath = [0, 4, 3]
-        iter = ss_g.findPath(0, 3, parents)
-        i = 0
-        for p in iter:
-            self.assertEqual(expectePath[i], p)
+        vPath = []
+        ss_g.findPath(0, 3, parents, vPath)
+        for (x, y) in zip(expectePath, vPath):
+            self.assertEqual(x, y)
 
 if __name__ == "__main__":
     unittest.main()

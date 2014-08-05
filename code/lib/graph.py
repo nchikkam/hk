@@ -281,3 +281,44 @@ class Graph:
                 paths.append(explored)
         return paths
 
+    def BFS(self, start):
+        # initialize lists
+        maxV = len(self.v.keys())
+        processed = [False] * (maxV)   # which vertices have been processed
+        discovered = [False] * (maxV)  # which vertices have been found
+        parent= [-1] * (maxV)          # discovery relation
+
+        q = []   # queue of vertices to visit */
+
+        # enqueue(&q,start);
+        q.append(start)
+
+        discovered[start] = True
+
+        while (len(q) != 0):
+            v = q.pop(0)
+            processed[v] = True
+
+            nbrs = self.v[v].getNeighbours().keys()
+            # print nbrs
+            for n in nbrs:
+                # if processed[n] == False
+                if discovered[n] == False:
+                    q.append(n)
+                    discovered[n] = True
+                    parent[n] = v
+
+        return (discovered, parent)
+
+    def findPath(self, start, end, parents):
+        if ((start == end) or (end == -1)):
+            yield start
+        else:
+            for n in self.findPath(start, parents[end], parents):
+                yield n
+
+
+
+
+
+

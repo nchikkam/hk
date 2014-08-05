@@ -324,7 +324,37 @@ class GraphTests(unittest.TestCase):
         paths = self.g.CLR_Dfs()
         self.assertEqual(len(paths), 2)
 
+    def test_BFS(self):
 
+        #(discovered, parent) = self.g.BFS(0)
+
+        ss_g = Graph()
+        for v in range(6):
+            ss_g.addVertex(v)
+
+        ss_g.addEdge(0, 1)
+        ss_g.addEdge(0, 4)
+        ss_g.addEdge(0, 5)
+        ss_g.addEdge(1, 2)
+        ss_g.addEdge(2, 3)
+        ss_g.addEdge(3, 4)
+
+
+        (discovered, parents) = ss_g.BFS(0)
+        expectePath = [0, 1, 2, 3]
+        iter = ss_g.findPath(0, 3, parents)
+        i = 0
+        for p in iter:
+            self.assertEqual(expectePath[i], p)
+
+        # now add an edge from 4 to 3 to to shorten the path
+        ss_g.addEdge(4, 3)
+        (discovered, parents) = ss_g.BFS(0)
+        expectePath = [0, 4, 3]
+        iter = ss_g.findPath(0, 3, parents)
+        i = 0
+        for p in iter:
+            self.assertEqual(expectePath[i], p)
 
 if __name__ == "__main__":
     unittest.main()

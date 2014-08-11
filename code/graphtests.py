@@ -326,8 +326,6 @@ class GraphTests(unittest.TestCase):
 
     def test_BFS(self):
 
-        #(discovered, parent) = self.g.BFS(0)
-
         ss_g = Graph()
         for v in range(6):
             ss_g.addVertex(v)
@@ -346,7 +344,6 @@ class GraphTests(unittest.TestCase):
         for (x, y) in zip(expectePath, vPath):
             self.assertEqual(x, y)
 
-
         # add an edge between 4 and 3 to short cut for testing new path
         ss_g.addEdge(4, 3)
         (discovered, parents) = ss_g.BFS(0)
@@ -355,6 +352,69 @@ class GraphTests(unittest.TestCase):
         ss_g.findPath(0, 3, parents, vPath)
         for (x, y) in zip(expectePath, vPath):
             self.assertEqual(x, y)
+
+    def testFindPath(self):
+
+        g = Graph()
+
+        g.addVertex('s')
+        g.addVertex('u')
+        g.addVertex('v')
+        g.addVertex('t')
+
+        g.addEdge('s', 'u', 20)
+        g.addEdge('s', 'v', 10)
+        g.addEdge('u', 'v', 30)
+        g.addEdge('u', 't', 10)
+        g.addEdge('v', 't', 20)
+
+        p = g.find_path('s', 't', [])
+        self.assertTrue(all(x in p for x in ['s', 'u', 't']))
+
+    def testFindAllPaths(self):
+
+        g = Graph()
+
+        g.addVertex('s')
+        g.addVertex('u')
+        g.addVertex('v')
+        g.addVertex('t')
+
+        g.addEdge('s', 'u', 20)
+        g.addEdge('s', 'v', 10)
+        g.addEdge('u', 'v', 30)
+        g.addEdge('u', 't', 10)
+        g.addEdge('v', 't', 20)
+
+        paths = g.find_all_paths('s', 't', [])
+        expectedPaths = [
+                         ['s', 'u', 't'],
+                         ['s', 'u', 'v', 't'],
+                         ['s', 'v', 't']
+                         ]
+        for path in expectedPaths:
+            self.assertTrue(path in paths)
+
+    def testFindShortestPath(self):
+
+        g = Graph()
+
+        g.addVertex('s')
+        g.addVertex('u')
+        g.addVertex('v')
+        g.addVertex('t')
+
+        g.addEdge('s', 'u', 20)
+        g.addEdge('s', 'v', 10)
+        g.addEdge('u', 'v', 30)
+        g.addEdge('u', 't', 10)
+        g.addEdge('v', 't', 20)
+
+        expectedPath = ['s', 'u', 't']
+        actualPath = g.find_shortest_path('s', 't', [])
+
+        for v in expectedPath:
+            self.assertTrue(v in actualPath)
 
 if __name__ == "__main__":
     unittest.main()

@@ -138,7 +138,6 @@ class Graph:
         adj_vertices =  self.v[vertex].getNeighbours()
         return len(adj_vertices)
 
-
     """
        The degree of a vertex is the no of edges connecting to it.
        loop is counted twice
@@ -317,8 +316,53 @@ class Graph:
             self.findPath(start, parents[end], parents, path)
             path.append(end)
 
+    """
+       Find path between two given nodes
+    """
+    def find_path(self, start, end, path=[]):
+        path = path + [start]
+        if start == end:
+            return path
+        if not self.v.has_key(start):
+            return None
+        for node in self.v[start].getNeighbours().keys():
+            if node not in path:
+                newpath = self.find_path(node, end, path)
+                if newpath: return newpath
+        return None
 
+    """
+        Find all paths
+    """
+    def find_all_paths(self, start, end, path=[]):
+        path = path + [start]
+        if start == end:
+            return [path]
+        if not self.v.has_key(start):
+            return []
+        paths = []
+        for node in self.v[start].getNeighbours().keys():
+            if node not in path:
+                newpaths = self.find_all_paths(node, end, path)
+                for newpath in newpaths:
+                    paths.append(newpath)
+        return paths
 
-
-
+    """
+        Find shorted path w.r.t no of vertices on the path
+    """
+    def find_shortest_path(self, start, end, path=[]):
+        path = path + [start]
+        if start == end:
+            return path
+        if not self.v.has_key(start):
+            return None
+        shortest = None
+        for node in self.v[start].getNeighbours().keys():
+            if node not in path:
+                newpath = self.find_shortest_path(node, end, path)
+                if newpath:
+                    if not shortest or len(newpath) < len(shortest):
+                        shortest = newpath
+        return shortest
 

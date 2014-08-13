@@ -1,3 +1,5 @@
+from collections import defaultdict
+from heapq import *
 import itertools
 
 class Vertex:
@@ -365,4 +367,37 @@ class Graph:
                     if not shortest or len(newpath) < len(shortest):
                         shortest = newpath
         return shortest
+
+    """
+        prim's algorithm - properties: tree could be not connected during
+        the finding process as it finds edges with min cost - greedy strategy
+    """
+    def msp(self):
+        nodes = self.v.keys()
+        edges = [(u, v, c) for u in self.v.keys() for v, c in self.v[u].getNeighbours().items()]
+
+        return self.prim(nodes, edges)
+
+    def prim(self, nodes, edges):
+        conn = defaultdict( list )
+        for n1,n2,c in edges:  # makes graph undirected
+            conn[ n1 ].append( (c, n1, n2) )
+            conn[ n2 ].append( (c, n2, n1) )
+
+        mst = []
+        used = set()
+        used.add( nodes[0] )
+        usable_edges = conn[ nodes[0] ][:]
+        heapify( usable_edges )
+
+        while usable_edges:
+            cost, n1, n2 = heappop( usable_edges )
+            if n2 not in used:
+                used.add( n2 )
+                mst.append( ( n1, n2, cost ) )
+
+                for e in conn[ n2 ]:
+                    if e[ 2 ] not in used:
+                        heappush( usable_edges, e )
+        return mst
 

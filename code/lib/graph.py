@@ -1,6 +1,9 @@
 from collections import defaultdict
 from heapq import *
 import itertools
+from lib.unionfind import  (
+    UnionFind
+)
 
 class Vertex:
     def __init__(self, id):
@@ -371,8 +374,13 @@ class Graph:
     """
         prim's algorithm - properties: tree could be not connected during
         the finding process as it finds edges with min cost - greedy strategy
+        Prims always stays as a tree
+        If you don't know all the weight on edges use
+        Prim's algorithm
+        f you only need partial solution on the graph
+        use Prim's algorithm
     """
-    def msp(self):
+    def mspPrims(self):
         nodes = self.v.keys()
         edges = [(u, v, c) for u in self.v.keys() for v, c in self.v[u].getNeighbours().items()]
 
@@ -400,4 +408,33 @@ class Graph:
                     if e[ 2 ] not in used:
                         heappush( usable_edges, e )
         return mst
+
+    """
+        Kruskals begins with forest and merge into a tree
+    """
+    def mspKrushkals(self):
+        nodes = self.v.keys()
+        edges = [(c, u, v) for u in self.v.keys() for v, c in self.v[u].getNeighbours().items()]
+
+        return self.krushkal(edges)
+
+    def krushkal(self, edges):
+        """
+        Return the minimum spanning tree of an undirected graph G.
+        G should be represented in such a way that iter(G) lists its
+        vertices, iter(G[u]) lists the neighbors of u, G[u][v] gives the
+        length of edge u,v, and G[u][v] should always equal G[v][u].
+        The tree is returned as a list of edges.
+        """
+        # Kruskal's algorithm: sort edges by weight, and add them one at a time.
+        # We use Kruskal's algorithm, first because it is very simple to
+        # implement once UnionFind exists, and second, because the only slow
+        # part (the sort) is sped up by being built in to Python.
+        subtrees = UnionFind()
+        tree = []
+        for c,u,v in sorted(edges): # take from small weight to large in order
+            if subtrees[u] != subtrees[v]:
+                tree.append((u,v, c))
+                subtrees.union(u,v)
+        return tree
 

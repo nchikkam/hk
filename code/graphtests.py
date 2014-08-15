@@ -416,7 +416,7 @@ class GraphTests(unittest.TestCase):
 
     def testPrims(self):
         expectedMST = [(0, 2, 4), (2, 4, 1), (4, 3, 1), (4, 6, 2), (2, 1, 3), (4, 5, 5)]
-        actualMST = self.g.msp()
+        actualMST = self.g.mspPrims()
 
         for edge in expectedMST:
             self.assertTrue(edge in actualMST)
@@ -442,7 +442,7 @@ class GraphTests(unittest.TestCase):
         grph.addEdge(6, 7, 7)
 
         expMST = [(0, 1, 4), (0, 2, 6), (2, 4, 5), (2, 3, 8), (4, 6, 11), (6, 7, 7), (6, 5, 9)]
-        actualMST = grph.msp()
+        actualMST = grph.mspPrims()
 
         for edge in expMST:
             self.assertTrue(edge in actualMST)
@@ -466,7 +466,7 @@ class GraphTests(unittest.TestCase):
         grph.addEdge(5, 6, 2)
 
         expMST = [(0, 1, 4), (0, 2, 8), (2, 5, 1), (2, 3, 2), (5, 6, 2), (5, 4, 5)]
-        actualMST = grph.msp()
+        actualMST = grph.mspPrims()
         for edge in expMST:
             self.assertTrue(edge in actualMST)
 
@@ -486,9 +486,44 @@ class GraphTests(unittest.TestCase):
         grph.addEdge(4, 5, 4)
 
         expMST = [(0, 1, 2), (0, 2, 3), (2, 4, 2), (4, 3, 1), (3, 5, 2)]
-        actualMST = grph.msp()
+        actualMST = grph.mspPrims()
         for edge in expMST:
             self.assertTrue(edge in actualMST)
+
+    def testKrushkals(self):
+
+        expectedMST = [(2, 4, 1), (3, 4, 1), (4, 6, 2), (1, 2, 3), (0, 2, 4), (4, 5, 5)]
+        actualTree = self.g.mspKrushkals()
+        for edge in expectedMST:
+            self.assertTrue(edge in actualTree)
+
+        # second example
+        grph = Graph()
+        for v in range(7):
+            grph.addVertex(v)
+
+        grph.addEdge(0, 1, 5)
+        grph.addEdge(0, 2, 7)
+        grph.addEdge(1, 2, 9)
+        grph.addEdge(1, 3, 6)
+        grph.addEdge(1, 5, 15)
+        grph.addEdge(2, 4, 8)
+        grph.addEdge(2, 5, 7)
+        grph.addEdge(3, 5, 8)
+        grph.addEdge(3, 6, 11)
+        grph.addEdge(4, 5, 5)
+        grph.addEdge(5, 6, 9)
+
+        expTree = [(0, 1, 5), (4, 5, 5), (1, 3, 6), (0, 2, 7), (2, 5, 7), (5, 6, 9)]
+        actualTree = grph.mspKrushkals()
+        for edge in expTree:
+            self.assertTrue(edge in actualTree)
+
+
+
+
+
+
 
     """
         @ToDo: Test Cayley's Theorem. There are n^(n-2) spanning trees of K.n.

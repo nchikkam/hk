@@ -1,0 +1,15 @@
+<TESTGROUP Name=%s>
+*** ==================================================================
+*** SUITE SUMMARY
+***
+*** Passed:%11d
+*** Failed:%11d
+*** Skipped:%10d
+*** Aborted:%10d
+*** -------- ---------
+*** Total:%12d
+***
+*** Cumulative Test Execution Time: 00:00:00.000
+*** Total Tux Suite Execution Time: 00:00:00.000
+*** ==================================================================
+</TESTGROUP>

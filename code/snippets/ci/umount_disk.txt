@@ -1,0 +1,2 @@
+SELECT VDISK FILE="path_to_virtual_hard_drive"
+DETACH VDISK

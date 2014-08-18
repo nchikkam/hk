@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+#   Copyright (C) 2014-2058 by
+#   Narayana Chikkam<nchikkam@gmail.com>
+#   All rights reserved.
+__author__ = """Narayana Chikkam (nchikkam@gmail.com)"""
+__all__ = ["max_sub_sequence_sum"]
 import unittest
 # Function to return max sum such that no two elements
 # are adjacent

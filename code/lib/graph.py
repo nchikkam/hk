@@ -418,6 +418,21 @@ class Graph:
 
         return self.krushkal(edges)
 
+    def pprint(self):
+        print "{ ",
+        for u in self.v.keys():
+            print u,
+            print ": { ",
+            for v in self.v[u].getNeighbours().keys():
+                print v, ":", self.v[u].getNeighbours()[v]
+            print " }",
+
+        print " }\n"
+
+
+
+
+
     def krushkal(self, edges):
         """
         Return the minimum spanning tree of an undirected graph G.
@@ -438,3 +453,100 @@ class Graph:
                 subtrees.union(u,v)
         return tree
 
+    def adj(self, missing=float('inf')):  # makes the adj dict will all possible cells, similar to matrix
+        """
+           G= { 0 : { 1 : 6, 2 : 4  }
+                1 : { 2 : 3, 5 : 7  }
+                2 : { 3 : 9, 4 : 1  }
+                3 : { 4 : 1 }
+                4 : { 5 : 5, 6 : 2  }
+                5 : {  }
+                6 : {  }
+            }
+
+            adj(G) >>
+            { 0: {0: 0, 1: 6, 2: 4, 3: inf, 4: inf, 5: inf, 6: inf},
+              1: {0: inf, 1: 0, 2: 3, 3: inf, 4: inf, 5: 7, 6: inf},
+              2: {0: inf, 1: inf, 2: 0, 3: 9, 4: 1, 5: inf, 6: inf},
+              3: {0: inf, 1: inf, 2: inf, 3: 0, 4: 1, 5: inf, 6: inf},
+              4: {0: inf, 1: inf, 2: inf, 3: inf, 4: 0, 5: 5, 6: 2},
+              5: {0: inf, 1: inf, 2: inf, 3: inf, 4: inf, 5: 0, 6: inf},
+              6: {0: inf, 1: inf, 2: inf, 3: inf, 4: inf, 5: inf, 6: 0}
+            }
+        """
+        vertices = self.v.keys()
+        return {v1:
+             {v2: 0 if v1 == v2 else self.v[v1].getNeighbours().get(v2, missing) for v2 in vertices
+             }
+             for v1 in vertices
+            }
+
+    def floyds(self):
+        """
+            All pair shortest Path
+            Idea:
+            for k in (0, n):
+                for i in (0, n):
+                    for j in (0, n):
+                    g[i][j] = min(graph[i][j], graph[i][k]+graph[k][j])
+            Find the shortest distance between every pair of vertices in the weighted Graph G
+        """
+        d =  self.adj()  # prepare the adjacency list representation for the algorithm
+
+        vertices = self.v.keys()
+
+        for v2 in vertices:
+            d = {v1: {v3: min(d[v1][v3], d[v1][v2] + d[v2][v3])
+                     for v3 in vertices}
+                 for v1 in vertices}
+        return d
+
+    def reachability(self):
+        """ Idea: graph reachability floyd-warshall
+            for k in (0, n):
+                for i in (0, n):
+                    for j in (0, n):
+                    g[i][j] = graph[i][j] || (graph[i][k]&&graph[k][j]))
+        """
+        vertices = self.v.keys()
+        d =  self.adj(float('0'))
+        for u in vertices:
+            for v in vertices:
+                if u ==v or d[u][v]: d[u][v] = True
+                else: d[u][v] = False
+        for v2 in vertices:
+            d = {v1: {v3: d[v1][v3] or (d[v1][v2] and d[v2][v3]) # path for v1->v3 or v1->v2, v2-?v3
+                     for v3 in vertices}
+                 for v1 in vertices}
+        return d
+
+
+
+    def pathRecoveryFloydWarshall(self):
+        pass
+        """
+        d =  self.adj()  # missing edges will have -1.0 value
+
+        print d
+
+        vertices = self.v.keys()
+        parent = d.copy()
+        for v1 in vertices:
+            for v2 in vertices:
+                if (v1 == v2) or d[v1][v2] == float('inf'):
+                    parent[v1][v2] = -1
+                else:
+                    parent[v1][v2] = v2
+
+        print parent
+
+        for k in vertices:
+            for i in vertices:
+                for j in vertices:
+                    temp = d[i][k] + d[k][j]
+                    if temp < d[i][j]:
+                        d[i][j] = temp
+                        parent[i][j] = parent[i][k]
+
+        return parent
+    """

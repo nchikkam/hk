@@ -519,11 +519,82 @@ class GraphTests(unittest.TestCase):
         for edge in expTree:
             self.assertTrue(edge in actualTree)
 
+    def testFloyds(self):
 
+        expected = {
+            0: {0: 0,   1: 6,   2: 4,   3: 13,  4: 5,   5: 10,   6: 7 },
+            1: {0: float('inf'), 1: 0,   2: 3,
+                3: 12,  4: 4,   5: 7,   6: 6
+                },
+            2: {0: float('inf'), 1: float('inf'),
+                2: 0,   3: 9,   4: 1,   5: 6,   6: 3
+                },
+            3: {0: float('inf'), 1: float('inf'), 2: float('inf'),
+                3: 0,   4: 1,   5: 6,   6: 3
+                },
+            4: {0: float('inf'), 1: float('inf'), 2: float('inf'),
+                3: float('inf'), 4: 0,   5: 5,   6: 2
+                },
+            5: {0: float('inf'), 1: float('inf'), 2: float('inf'),
+                3: float('inf'), 4: float('inf'), 5: 0,   6: float('inf')
+                },
+            6: {0: float('inf'), 1: float('inf'), 2: float('inf'),
+                3: float('inf'), 4: float('inf'), 5: float('inf'), 6: 0
+                }
+        }
 
+        actual = self.g.floyds()
+        self.assertDictEqual(expected, actual)  # handy
+        self.assertTrue(p==q for p, q in  zip(expected.items(), actual.items())) #does the same
+        self.assertTrue(expected.items() == actual.items())  #does the same
 
+        """
+            grph = {0: {0: 0,   1: 1,   2: 4},
+             1: {0: inf, 1: 0,   2: 2},
+             2: {0: inf, 1: inf, 2: 0}
+            }
+        """
+        grph = Graph()
+        for v in range(3):
+            grph.addVertex(v)
 
+        grph.addEdge(0, 1, 1)
+        grph.addEdge(0, 2, 4)
+        grph.addEdge(1, 2, 2)
 
+        """
+        {0: {0: 0,   1: 1,   2: 3},
+         1: {0: inf, 1: 0,   2: 2},
+         2: {0: inf, 1: inf, 2: 0}}
+        """
+        expected = {0: {0: 0,   1: 1,   2: 3},
+                    1: {0: float('inf'), 1: 0,   2: 2},
+                    2: {0: float('inf'), 1: float('inf'), 2: 0}
+                }
+        actual = grph.floyds()
+
+        self.assertDictEqual(expected, actual)  # handy
+        self.assertTrue(p==q for p, q in  zip(expected.items(), actual.items())) #does the same
+        self.assertTrue(expected.items() == actual.items())  #does the same
+
+    def testReachability(self):   #uses floyd's algorithm
+
+        expected = {
+            0: {0: True,  1: True,  2: True,  3: True,  4: True,  5: True,  6: True},
+            1: {0: False, 1: True,  2: True,  3: True,  4: True,  5: True,  6: True},
+            2: {0: False, 1: False, 2: True,  3: True,  4: True,  5: True,  6: True},
+            3: {0: False, 1: False, 2: False, 3: True,  4: True,  5: True,  6: True},
+            4: {0: False, 1: False, 2: False, 3: False, 4: True,  5: True,  6: True},
+            5: {0: False, 1: False, 2: False, 3: False, 4: False, 5: True,  6: False},
+            6: {0: False, 1: False, 2: False, 3: False, 4: False, 5: False, 6: True}
+        }
+        actual = self.g.reachability()
+
+        self.assertDictEqual(expected, actual)
+
+    def testPathRecoveryFloydWarshall(self):   #ToDo:
+        print self.g.pathRecoveryFloydWarshall()
+        self.assertTrue(False)
 
     """
         @ToDo: Test Cayley's Theorem. There are n^(n-2) spanning trees of K.n.

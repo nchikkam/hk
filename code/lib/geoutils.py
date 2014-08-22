@@ -21,12 +21,6 @@ def distance(latOne, lonOne, latTwo, lonTwo):
     return d
 
 
-print distance(52.5318, 13.3898, 52.52346, 13.35981) # 2.230579904723257
-
-# seattle = [47.621800, -122.350326]
-# olympia = [47.041917, -122.893766]
-print distance(47.621800, -122.350326, 47.041917, -122.893766)
-
 
 def bearing(startLat, startLong, endLat, endLong):
     startLat = math.radians(startLat)
@@ -47,18 +41,6 @@ def bearing(startLat, startLong, endLat, endLong):
 
     return bearing
 
-print bearing(43.682213, -70.450696, 43.682194, -70.450769)
-print bearing(0.0,0.0,0.0,0.0)
-print bearing(0.0,0.0,0.0,10.0)
-print bearing(0.0,0.0,10.0,0.0)
-print bearing(0.0,0.0,0.0,-10.0)
-print bearing(0.0,0.0,-10.0,0.0)
-print bearing(0.0,0.0,-1.0,10.0)
-print bearing(53.32055555555556 , -1.7297222222222221, 53.31861111111111, -1.6997222222222223)
-print bearing(53.32055555555556 , -1.7297222222222221, 53.31861111111111, -1.6997222222222223)
-print bearing(53.32055, -1.72972, 53.31861, -1.69972)
-
-
 def midPoint(startLat, startLong, endLat, endLong):
     startLat = math.radians(startLat)
     startLong = math.radians(startLong)
@@ -78,11 +60,10 @@ def midPoint(startLat, startLong, endLat, endLong):
 
     return midLat, midLon
 
-print midPoint(43.682213, -70.450696, 43.682194, -70.450769)
-
 """
     Destination point given distance and bearing from start point
     http://gis.stackexchange.com/questions/76077/how-to-create-points-based-on-the-distance-and-bearing-from-a-survey-point
+    http://www.mathsteacher.com.au/year7/ch08_angles/07_bear/bearing.htm
 """
 def destinationPoint(startLat, startLon, brng, distanceTraveled):
     point     = (startLat, startLon)
@@ -97,17 +78,3 @@ def destinationPoint(startLat, startLon, brng, distanceTraveled):
     xfinal, yfinal = (point[0] +(distance * cosa), point[1]+(distance * cosb))
 
     return xfinal, yfinal
-
-print destinationPoint(43.682213, -70.450696, 6, 10)
-
-
-
-
-
-
-
-
-
-
-
-

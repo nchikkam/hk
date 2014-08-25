@@ -641,3 +641,19 @@ class Graph:
             end = P[end]
         Path.reverse()
         return Path
+
+    """
+        smart snippet on the dijkstra alg:
+        def shortestPath(graph, start, end):
+            queue = [(0, start, [])]
+            seen = set()
+            while True:
+                (cost, v, path) = heapq.heappop(queue)
+                if v not in seen:
+                    path = path + [v]
+                    seen.add(v)
+                    if v == end:
+                        return cost, path
+                    for (next, c) in graph[v].iteritems():
+                        heapq.heappush(queue, (cost + c, next, path))
+    """

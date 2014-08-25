@@ -648,6 +648,43 @@ class GraphTests(unittest.TestCase):
         self.assertEqual([5, 4, 2], path)
 
 
+    def testDijkstra(self):
+        g = Graph()
+        g.addVertex('s')
+        g.addVertex('u')
+        g.addVertex('v')
+        g.addVertex('x')
+        g.addVertex('y')
+
+        g.addEdge('s', 'u', 10)
+        g.addEdge('s', 'x', 5)
+
+        g.addEdge('u', 'v', 1)
+        g.addEdge('u', 'x', 2)
+
+        g.addEdge('v', 'y', 4)
+
+        g.addEdge('x', 'u', 3)
+        g.addEdge('x', 'v', 9)
+        g.addEdge('x', 'y', 2)
+
+        g.addEdge('y', 's', 7)
+        g.addEdge('y', 'v', 6)
+
+        expected =  ['y', 's']
+        actual = g.shortestPathDijkstra('y', 's')
+        self.assertEqual(expected, actual)
+
+        expected =  ['s', 'x', 'u', 'v']
+        actual = g.shortestPathDijkstra('s', 'v')
+        self.assertEqual(expected, actual)
+
+        g.updateEdge('s', 'u', 1)
+        expected =  ['s', 'u', 'v']
+        actual = g.shortestPathDijkstra('s', 'v')
+        self.assertEqual(expected, actual)
+
+
 
     """
         @ToDo: Test Cayley's Theorem. There are n^(n-2) spanning trees of K.n.

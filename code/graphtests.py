@@ -684,6 +684,58 @@ class GraphTests(unittest.TestCase):
         actual = g.shortestPathDijkstra('s', 'v')
         self.assertEqual(expected, actual)
 
+    def testTarjansSCC(self):
+        expected = [('G',), ('B',), ('E', 'F', 'D'), ('C',), ('A',)]
+        g = Graph()
+        g.addVertex('A')
+        g.addVertex('B')
+        g.addVertex('C')
+        g.addVertex('D')
+        g.addVertex('E')
+        g.addVertex('F')
+        g.addVertex('G')
+
+        g.addEdge('A', 'C', 1)
+        g.addEdge('A', 'E', 1)
+        g.addEdge('A', 'F', 1)
+        g.addEdge('B', 'G', 1)
+        g.addEdge('C', 'B', 1)
+        g.addEdge('C', 'D', 1)
+        g.addEdge('F', 'E', 1)
+        g.addEdge('D', 'F', 1)
+        g.addEdge('E', 'D', 1)
+        g.addEdge('E', 'G', 1)
+
+        self.assertEqual(expected, g.strongly_connected_components())
+
+        #case -2
+        expected = [(12, 11, 9, 10, 7, 8), (6, 3), (5, 4, 2), (1,)]
+        g2 = Graph()
+        for v in range(1, 13):
+            g2.addVertex(v)
+
+        g2.addEdge(1, 2, 1)
+        g2.addEdge(2, 3, 1)
+        g2.addEdge(2, 4, 1)
+        g2.addEdge(2, 5, 1)
+        g2.addEdge(3, 6, 1)
+        g2.addEdge(4, 5, 1)
+        g2.addEdge(4, 7, 1)
+        g2.addEdge(5, 2, 1)
+        g2.addEdge(5, 6, 1)
+        g2.addEdge(5, 7, 1)
+        g2.addEdge(6, 3, 1)
+        g2.addEdge(6, 8, 1)
+        g2.addEdge(7, 8, 1)
+        g2.addEdge(7, 10, 1)
+        g2.addEdge(8, 7, 1)
+        g2.addEdge(9, 7, 1)
+        g2.addEdge(10, 9, 1)
+        g2.addEdge(10, 11, 1)
+        g2.addEdge(11, 12, 1)
+        g2.addEdge(12, 10, 1)
+
+        self.assertEqual(expected, g2.strongly_connected_components())
 
 
     """

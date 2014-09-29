@@ -18,7 +18,7 @@ class Vertex:
         self.neighbours[id] = weight
 
     def __str__(self):
-        return str(self.id) + ' Neighbours: ' + str(self.neighbours.keys())
+        return str(self.id) + ': ' + str(self.neighbours.keys())
 
     def getNeighbours(self):
         return self.neighbours #.keys()
@@ -61,6 +61,14 @@ class Graph:
 
     def getVertices(self):
         return self.v.keys()
+
+    def __str__(self):
+        ret = "{ "
+        for v in self.v.keys():
+            ret += str(self.v[v].__str__()) + ", "
+
+        return ret + " }"
+
 
     def __iter__(self):
         return iter(self.v.values())
@@ -710,3 +718,61 @@ class Graph:
                 strongconnect(node)
 
         return result
+
+    def computeFirstUsingSCC(self, initFirst):
+
+        index_counter = [0]
+        stack = []
+        lowlinks = {}
+        index = {}
+        result = []
+        first = {}
+
+        def computeFirst(node):
+            # set the depth index for this node to the smallest unused index
+            index[node] = index_counter[0]
+            lowlinks[node] = index_counter[0]
+            index_counter[0] += 1
+            stack.append(node)
+
+            # Consider successors of `node`
+            try:
+                successors = self.v[node].getNeighbours().keys()
+                print node, ":", successors
+                #successors = containsFirstOf[node]
+                #v, w = containsFirstOf.items()
+            except:
+                successors = []
+            for successor in successors:
+                if successor not in lowlinks:
+                    # Successor has not yet been visited; recurse on it
+                    computeFirst(successor)
+                    lowlinks[node] = min(lowlinks[node],lowlinks[successor])
+                elif successor in stack:
+                    # the successor is in the stack and hence in the current strongly connected component (SCC)
+                    lowlinks[node] = min(lowlinks[node],index[successor])
+                first[node] |= first[successor]  #(*union!*)
+
+            # If `node` is a root node, pop the stack and generate an SCC
+            if lowlinks[node] == index[node]:
+                connected_component = []
+
+                while True:
+                    successor = stack.pop()
+                    #FIRST[w] := FIRST[v]; (*distribute!*)
+                    first[successor] = first[node] #(*distribute!*)
+                    connected_component.append(successor)
+                    if successor == node: break
+                component = tuple(connected_component)
+                # storing the result
+                result.append(component)
+
+        for v in initFirst:
+            first[v] = initFirst[v]  #(*init!*)
+        print "init First assignment: ", first
+
+        for node in self.v.keys():
+            if node not in lowlinks:
+                computeFirst(node)
+
+        return first

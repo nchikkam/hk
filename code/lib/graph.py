@@ -744,14 +744,17 @@ class Graph:
             except:
                 successors = []
             for successor in successors:
+
                 if successor not in lowlinks:
                     # Successor has not yet been visited; recurse on it
                     computeFirst(successor)
+
                     lowlinks[node] = min(lowlinks[node],lowlinks[successor])
                 elif successor in stack:
                     # the successor is in the stack and hence in the current strongly connected component (SCC)
                     lowlinks[node] = min(lowlinks[node],index[successor])
-                first[node] |= first[successor]  #(*union!*)
+                first[node] |= set(first[successor] - set(['epsilon'])).union(set(initFirst[node]))  #(*union!*)
+
 
             # If `node` is a root node, pop the stack and generate an SCC
             if lowlinks[node] == index[node]:
@@ -760,7 +763,7 @@ class Graph:
                 while True:
                     successor = stack.pop()
                     #FIRST[w] := FIRST[v]; (*distribute!*)
-                    first[successor] = first[node] #(*distribute!*)
+                    first[successor] = set(first[node] - set(['epsilon'])).union(set(initFirst[successor]) )#(*distribute!*)
                     connected_component.append(successor)
                     if successor == node: break
                 component = tuple(connected_component)

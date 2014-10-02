@@ -738,9 +738,6 @@ class Graph:
             # Consider successors of `node`
             try:
                 successors = self.v[node].getNeighbours().keys()
-                print node, ":", successors
-                #successors = containsFirstOf[node]
-                #v, w = containsFirstOf.items()
             except:
                 successors = []
             for successor in successors:
@@ -772,10 +769,67 @@ class Graph:
 
         for v in initFirst:
             first[v] = initFirst[v]  #(*init!*)
-        print "init First assignment: ", first
+        #print "init First assignment: ", first
 
         for node in self.v.keys():
             if node not in lowlinks:
                 computeFirst(node)
 
         return first
+
+    def computeFollowUsingSCC(self, FIRST, initFollow):
+
+        index_counter = [0]
+        stack = []
+        lowlinks = {}
+        index = {}
+        result = []
+        follow = {}
+
+        def computeFollow(node):
+            # set the depth index for this node to the smallest unused index
+            index[node] = index_counter[0]
+            lowlinks[node] = index_counter[0]
+            index_counter[0] += 1
+            stack.append(node)
+
+            # Consider successors of `node`
+            try:
+                successors = self.v[node].getNeighbours().keys()
+            except:
+                successors = []
+            for successor in successors:
+
+                if successor not in lowlinks:
+                    # Successor has not yet been visited; recurse on it
+                    computeFollow(successor)
+
+                    lowlinks[node] = min(lowlinks[node],lowlinks[successor])
+                elif successor in stack:
+                    # the successor is in the stack and hence in the current strongly connected component (SCC)
+                    lowlinks[node] = min(lowlinks[node],index[successor])
+
+                follow[node] |= follow[successor] #(*union!*)
+
+
+            # If `node` is a root node, pop the stack and generate an SCC
+            if lowlinks[node] == index[node]:
+                connected_component = []
+
+                while True:
+                    successor = stack.pop()
+                    follow[successor] = follow[node]
+                    connected_component.append(successor)
+                    if successor == node: break
+                component = tuple(connected_component)
+                # storing the result
+                result.append(component)
+
+        for v in initFollow:
+            follow[v] = initFollow[v]  #(*init!*)
+
+        for node in self.v.keys():
+            if node not in lowlinks:
+                computeFollow(node)
+
+        return follow

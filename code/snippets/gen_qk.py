@@ -135,6 +135,20 @@ def xyzToLatLongDegree(xtile, ytile, zoom):
   return (lat_deg, lon_deg, tl, tr, bl, br)
 
 
+
+for width in range(0, 9):
+    f = open("quadkeys_8.txt"%(width), "w")
+    g2 = generateQuadKeys(width)
+    for q in g2:
+        #line = q + "\n"
+        #f.write(line)
+        (z, x, y) = QuadKeyToTileXY(q)
+        (lat, lon, tl, tr, bl, br) = xyzToLatLongDegree(x, y, z)
+        line = "%s (%d %d %d) %f %f [%f %f %f %f]\n" %(q, z, x, y, lat, lon, tl, tr, bl, br)
+        f.write(line)
+
+"""
+
 for width in range(8, 14):
     f = open("quadkeys_%d.txt"%(width), "w")
     g2 = generateQuadKeys(width)
@@ -145,9 +159,6 @@ for width in range(8, 14):
         (lat, lon, tl, tr, bl, br) = xyzToLatLongDegree(x, y, z)
         line = "%s (%d %d %d) %f %f [%f %f %f %f]\n" %(q, z, x, y, lat, lon, tl, tr, bl, br)
         f.write(line)
-
-
-"""
     references:
     http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
     http://instaar.colorado.edu/~wickert/grass/googleearth/gdal2tiles.py

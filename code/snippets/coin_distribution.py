@@ -99,6 +99,7 @@ def dpMakeChange(coinValueList,change,minCoins,coinsUsed):
                newCoin = j
       minCoins[cents] = coinCount
       coinsUsed[cents] = newCoin
+
    return minCoins[change]
 """
     def printCoins(coinsUsed,change):

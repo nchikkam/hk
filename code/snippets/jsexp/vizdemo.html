@@ -1,0 +1,48 @@
+<html>
+<body>
+
+<div id="graphviz_svg_div"></div>
+<div id="d2"></div>
+
+</body>
+
+<script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"> </script>
+<script script language="javascript" type="text/javascript" src="viz.js"></script>
+<script>
+//var data = 'digraph G { "Welcome" -> "To" "To" -> "Web" "To" -> "GraphViz!" }';
+
+var data = '\
+digraph finite_state_machine {\
+	rankdir=LR;\
+	size="8,5"\
+	node [shape = doublecircle]; LR_0 LR_3 LR_4 LR_8;\
+	node [shape = circle];\
+	LR_0 -> LR_2 [ label = "SS(B)" ];\
+	LR_0 -> LR_1 [ label = "SS(S)" ];\
+	LR_1 -> LR_3 [ label = "S($end)" ];\
+	LR_2 -> LR_6 [ label = "SS(b)" ];\
+	LR_2 -> LR_5 [ label = "SS(a)" ];\
+	LR_2 -> LR_4 [ label = "S(A)" ];\
+	LR_5 -> LR_7 [ label = "S(b)" ];\
+	LR_5 -> LR_5 [ label = "S(a)" ];\
+	LR_6 -> LR_6 [ label = "S(b)" ];\
+	LR_6 -> LR_5 [ label = "S(a)" ];\
+	LR_7 -> LR_8 [ label = "S(b)" ];\
+	LR_7 -> LR_5 [ label = "S(a)" ];\
+	LR_8 -> LR_6 [ label = "S(b)" ];\
+	LR_8 -> LR_5 [ label = "S(a)" ];\
+}\
+';
+
+var svg_div = jQuery('#graphviz_svg_div');
+var svg = Viz(data, "svg");
+svg_div.html("<hr>"+svg);
+
+var data2 = 'graph G { a -- 1; b -- 2; c -- 3;}';
+
+var svg_d2 = jQuery('#d2');
+var svg2 = Viz(data2, "svg");
+svg_d2.html("<hr>"+svg2);
+
+</script>
+<html>

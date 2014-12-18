@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       <title>LR1 ;) </title>
+		<style>
+
+		</style>
+    </head>
+    <body>
+
+<div id="chart3" style="height:800px;"></div>
+
+<script src="js/jsnetworkx.js" charset="UTF-8"></script>
+<script src="js/d3.min.js" charset="UTF-8"></script>
+<script charset="UTF-8">
+	var G3 = jsnx.DiGraph();
+
+	G3.add_nodes_from([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21], {group:0});
+	//G3.add_nodes_from([4, 5], {group:1});
+
+	//G3.add_path([1,2,3,1]);
+	G3.add_edges_from([[0,3,{label:'E'}], [0,1,{label:'d'}], [0,5,{label:'F'}], [0,2,{label:'('}], [0,4,{label:'T'}], [2,8,{label:'E'}], [2,6,{label:'d'}], [2,10,{label:'F'}], [2,7,{label:'('}], [2,9,{label:'T'}], [3,11,{label:'+'}], [4,12,{label:'*'}], [7,13,{label:'E'}], [7,6,{label:'d'}], [7,10,{label:'F'}], [7,7,{label:'('}], [7,9,{label:'T'}], [8,14,{label:')'}], [8,15,{label:'+'}], [9,16,{label:'*'}], [11,1,{label:'d'}], [11,5,{label:'F'}], [11,2,{label:'('}], [11,17,{label:'T'}], [12,1,{label:'d'}], [12,18,{label:'F'}], [12,2,{label:'('}], [13,19,{label:')'}], [13,15,{label:'+'}], [15,6,{label:'d'}], [15,10,{label:'F'}], [15,7,{label:'('}], [15,20,{label:'T'}], [16,6,{label:'d'}], [16,21,{label:'F'}], [16,7,{label:'('}], [17,12,{label:'*'}], [20,16,{label:'*'}], ]);
+	//G3.add_edges_from([[6, 4, {label: 'DDD'}]]);
+
+	var color = d3.scale.category20();
+	jsnx.draw(G3, {
+		element: '#chart3',
+		layout_attr: {
+			charge: -120,
+			linkDistance: 20
+		},
+
+		node_attr: {
+		    r: 12,
+		    title: function(d) { return d;}
+		},
+
+		node_style: {
+			fill: function(d) {
+				return color(d.data.group);
+			},
+			stroke: 'none'
+		},
+		edge_style: {
+			stroke: '#999'
+		},
+
+		with_labels: true,
+
+		edge_labels: function(d) { return d.data.label;},
+		with_edge_labels: true,
+	}, true);
+
+	</script>
+
+</body>
+</html>

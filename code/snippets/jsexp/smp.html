@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       <meta charset="UTF-8">
+       <title>LR1 ;) </title>
+		<style>
+
+		</style>
+    </head>
+    <body>
+
+<div id="chart3"></div>
+
+<script src="jsnetworkx.js" charset="UTF-8"></script>
+<script src="d3.min.js" charset="UTF-8"></script>
+<script>
+	var G3 = jsnx.DiGraph();
+
+	G3.add_nodes_from([1, 2], {group:0});
+	G3.add_nodes_from([3, 4], {group:1});
+	
+
+	G3.add_path([1,2]);
+	G3.add_edges_from([[1,2, {label: 'marries'}]]);
+	G3.add_edges_from([[3, 4]]);
+	
+	var color = d3.scale.category20();
+	jsnx.draw(G3, {
+		element: '#chart3',
+		layout_attr: {
+			charge: -120,
+			linkDistance: 20
+		},
+		node_attr: {
+			rect: 5,
+			title: function(d) { return d;}
+		},
+		node_style: {
+			fill: function(d) {
+				return color(d.data.group);
+			},
+			stroke: 'none'
+		},
+		edge_style: {
+			stroke: '#999'
+		},
+
+		with_labels: true,
+
+		edge_labels: function(d) { return d.data.label;},
+		with_edge_labels: true,
+	}, true);
+
+	</script>
+
+</body>
+</html>

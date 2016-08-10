@@ -596,6 +596,101 @@ class TestBinarySearchTree(unittest.TestCase):
         self.assertEqual(bt.getRightDepth(), 2)
         self.assertEqual(bt.left.getRightDepth(), 1)
 
+    """
+    A binary tree is either an empty tree or a node (called the root) consisting
+    of a single integer value and two further binary trees, called the left subtree
+    and the right subtree.
+
+    For example, the figure below shows a binary tree consisting of six nodes.
+    Its root contains the value 5, and the roots of its left and right subtrees
+    have the values 3 and 10, respectively. The right subtree of the node containing
+    the value 10, as well as the left and right subtrees of the nodes containing
+    the values 20, 21 and 1, are empty trees.
+
+                   5
+                /    \
+               3      10
+             /  \     /
+            20   21  1
+
+    A path in a binary tree is a non-empty sequence of nodes that one can traverse
+    by following the pointers. The length of a path is the number of pointers it
+    traverses. More formally, a path of length K is a sequence of nodes
+    P[0], P[1], ..., P[K], such that node P[I + 1] is the root of the left or right
+    subtree of P[I], for 0 ≤ I < K. For example, the sequence of nodes with values
+    5, 3, 21 is a path of length 2 in the tree from the above figure. The sequence
+    of nodes with values 10, 1 is a path of length 1. The sequence of nodes with
+    values 21, 3, 20 is not a valid path.
+
+    The height of a binary tree is defined as the length of the longest possible
+    path in the tree. In particular, a tree consisting of only one node has height 0
+    and, conventionally, an empty tree has height −1. For example, the tree shown in
+    the above figure is of height 2.
+
+    Problem
+    Write a function that, given a non-empty binary tree T consisting of N nodes,
+    returns its height. For example, given tree T shown in the figure above, the function
+    should return 2, as explained above. Note that the values contained in the nodes
+    are not relevant in this task.
+    """
+    def testMaxLengthPathEitherLeftOnlyOrRightOnlyConcentratedSearch(self):
+        def solution(T):
+            def get_left_depth(N):  # O(log N)
+                """just finds out the left height"""
+                if N:
+                    if N.left:
+                        l = get_left_depth(N.left)
+                        return l + 1
+                    return 0
+                return 0
+
+            def get_right_depth(N):  # O(log N)
+                """just finds out the right height"""
+                if N:
+                    if N.right:
+                        r = get_right_depth(N.right)
+                        return r + 1
+                    return 0
+                return 0
+
+            lengths = {}  # container to store the path lengths
+
+            # standard bfs algorithm O(N)
+            def bfsTraversal(N):
+                q = []  # queue to store the nodes in BFS Order
+                index = 0
+                if N.left == None and N.right == None:
+                    return
+                q.append(N)
+                while len(q) > 0:
+                    current = q.pop(0)
+                    lengths[index] = max(get_left_depth(current.left), get_right_depth(current.right)) + 1
+                    index += 1
+                    if current.left:
+                        q.append(current.left)
+                    if current.right:
+                        q.append(current.right)
+
+            bfsTraversal(T)
+            sol = -1
+            for k in lengths:  # O(N)
+                if sol < int(lengths[k]):
+                    sol = int(lengths[k])
+
+            return sol
+
+        # it doesn't matter if the tree is BT or BST
+        """
+                   5
+                /    \
+               3      10
+             /  \     /
+            20   21  1
+        """
+        l = [5, 3, 10, 20, 21, 1, None]
+        bt = BinaryTree()
+        bt.create(l)
+        self.assertEqual(2, solution(bt))
 
 
 

@@ -120,10 +120,30 @@ class BinaryTree:
 
         return self.compareChilds(self.left, self.right, compareData)
 
+    def getLeftDepth(self):  # O(log N)
+        """consider only left links"""
+        if self.data:
+            if self.left:
+                l = self.left.getLeftDepth()
+                return l + 1
+            return 0
+        return 0
+
+    def getRightDepth(self):  # O(log N)
+        """consider only right links"""
+        if self.data:
+            if self.right:
+                r = self.right.getRightDepth()
+                return r + 1
+            return 0
+        return 0
+
 
 class BinarySearchTree(BinaryTree):
 
     def __init__(self, data=None):
+        super(BinarySearchTree, self).__init__()
+
         self.left = None
         self.right = None
         self.data = data
@@ -142,7 +162,7 @@ class BinarySearchTree(BinaryTree):
             else:
                 self.left.insert(data)
         else:
-            print "Trying to Insert Duplicate key"
+            print("Trying to Insert Duplicate key")
 
     def search(self, data):
         if self.data == None:
@@ -428,13 +448,13 @@ class BinarySearchTree(BinaryTree):
 
     def printList(self, dblist):
         current = dblist
-        print "\n"
+        print("\n")
         while current != None:
-            print current.data,
+            print(current.data, end='')
             current = current.right
             if current == dblist:
                 return
-        print "\n"
+        print("\n")
 
     def bstClone(self):
         if self.data == None:

@@ -567,5 +567,37 @@ class TestBinarySearchTree(unittest.TestCase):
 
         self.assertTrue(bt.isSymmetric(False)) # don't compare data, but structure ;)
 
+    def testLeftOnlyDepthOfANode(self):
+        l = [8, 4, 4, 1, 3, None, 1, None, None, None, None, None, None]
+        """
+                  8
+                /  \
+               4    4
+             /  \    \
+            1   3     1
+        """
+        bt = BinaryTree()
+        bt.create(l)
+        self.assertEqual(bt.getLeftDepth(), 2)
+        self.assertEqual(bt.left.getLeftDepth(), 1)
+        self.assertEqual(bt.right.getLeftDepth(), 0)
+
+    def testRightOnlyDepthOfANode(self):
+        l = [8, 4, 4, 1, 3, None, 1, None, None, None, None, None, None]
+        """
+                  8
+                /  \
+               4    4
+             /  \    \
+            1   3     1
+        """
+        bt = BinaryTree()
+        bt.create(l)
+        self.assertEqual(bt.getRightDepth(), 2)
+        self.assertEqual(bt.left.getRightDepth(), 1)
+
+
+
+
 if __name__ == "__main__":
     unittest.main()

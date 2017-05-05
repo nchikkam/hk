@@ -1,0 +1,169 @@
+python3 main.py --rooturl http://json.org --robotrules True --threadcount 29
+2017-05-05 16:32:08,467 crawler.py: INFO: __init__(): 22: Consider Robot.txt ? ==> True
+2017-05-05 16:32:08,467 crawler.py: INFO: __init__(): 41: robot.txt respected
+2017-05-05 16:32:09,486 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org
+2017-05-05 16:32:09,562 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,206 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET / HTTP/1.1" 200 24405
+2017-05-05 16:32:10,729 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 1
+2017-05-05 16:32:10,730 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-eo.html
+2017-05-05 16:32:10,731 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-tr.html
+2017-05-05 16:32:10,733 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-cz.html
+2017-05-05 16:32:10,734 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-sl.html
+2017-05-05 16:32:10,736 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-hu.html
+2017-05-05 16:32:10,737 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-pl.html
+2017-05-05 16:32:10,739 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-pt.html
+2017-05-05 16:32:10,740 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-ja.html
+2017-05-05 16:32:10,742 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-de.html
+2017-05-05 16:32:10,744 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-ar.html
+2017-05-05 16:32:10,745 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-es.html
+2017-05-05 16:32:10,747 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/index.html
+2017-05-05 16:32:10,748 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-bg.html
+2017-05-05 16:32:10,749 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-zh.html
+2017-05-05 16:32:10,751 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-fr.html
+2017-05-05 16:32:10,752 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-nl.html
+2017-05-05 16:32:10,753 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-da.html
+2017-05-05 16:32:10,754 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-he.html
+2017-05-05 16:32:10,755 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-sr.html
+2017-05-05 16:32:10,756 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-sv.html
+2017-05-05 16:32:10,759 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-vi.html
+2017-05-05 16:32:10,760 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-ru.html
+2017-05-05 16:32:10,761 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-it.html
+2017-05-05 16:32:10,762 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-el.html
+2017-05-05 16:32:10,764 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-fa.html
+2017-05-05 16:32:10,765 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-ro.html
+2017-05-05 16:32:10,767 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-ko.html
+2017-05-05 16:32:10,769 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-id.html
+2017-05-05 16:32:10,772 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,775 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,777 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,778 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,779 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,781 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,782 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,783 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,784 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,785 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,786 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,788 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,790 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,792 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,794 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,795 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,796 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,797 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,798 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,799 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,800 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,801 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,806 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,808 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,811 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,813 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,815 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:10,818 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:11,638 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-id.html HTTP/1.1" 200 25192
+2017-05-05 16:32:11,639 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-ar.html HTTP/1.1" 200 26069
+2017-05-05 16:32:11,641 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-hu.html HTTP/1.1" 200 24783
+2017-05-05 16:32:11,649 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-ko.html HTTP/1.1" 200 24863
+2017-05-05 16:32:11,657 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-eo.html HTTP/1.1" 200 24812
+2017-05-05 16:32:11,665 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-bg.html HTTP/1.1" 200 26149
+2017-05-05 16:32:11,671 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-pl.html HTTP/1.1" 200 24976
+2017-05-05 16:32:11,683 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-he.html HTTP/1.1" 200 25407
+2017-05-05 16:32:11,706 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-fr.html HTTP/1.1" 200 25405
+2017-05-05 16:32:11,741 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /index.html HTTP/1.1" 200 24405
+2017-05-05 16:32:11,749 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-it.html HTTP/1.1" 200 24736
+2017-05-05 16:32:11,752 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-nl.html HTTP/1.1" 200 24646
+2017-05-05 16:32:12,178 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 2
+2017-05-05 16:32:12,178 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-eo.html
+2017-05-05 16:32:12,304 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 3
+2017-05-05 16:32:12,419 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 4
+2017-05-05 16:32:12,551 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 5
+2017-05-05 16:32:12,668 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 6
+2017-05-05 16:32:12,785 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 7
+2017-05-05 16:32:12,902 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 8
+2017-05-05 16:32:13,029 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 9
+2017-05-05 16:32:13,030 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-ro.html
+2017-05-05 16:32:13,032 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-tr.html HTTP/1.1" 200 24833
+2017-05-05 16:32:13,033 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-cz.html HTTP/1.1" 200 24793
+2017-05-05 16:32:13,034 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-sl.html HTTP/1.1" 200 24363
+2017-05-05 16:32:13,035 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-sr.html HTTP/1.1" 200 25781
+2017-05-05 16:32:13,036 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-da.html HTTP/1.1" 200 24972
+2017-05-05 16:32:13,037 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-sv.html HTTP/1.1" 200 25039
+2017-05-05 16:32:13,038 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-ro.html HTTP/1.1" 200 24722
+2017-05-05 16:32:13,039 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-vi.html HTTP/1.1" 200 25160
+2017-05-05 16:32:13,039 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-ru.html HTTP/1.1" 200 26177
+2017-05-05 16:32:13,040 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-el.html HTTP/1.1" 200 26854
+2017-05-05 16:32:13,041 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-de.html HTTP/1.1" 200 25088
+2017-05-05 16:32:13,042 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-pt.html HTTP/1.1" 200 24678
+2017-05-05 16:32:13,043 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-fa.html HTTP/1.1" 200 25761
+2017-05-05 16:32:13,044 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-ja.html HTTP/1.1" 200 24987
+2017-05-05 16:32:13,045 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-es.html HTTP/1.1" 200 24933
+2017-05-05 16:32:13,045 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-zh.html HTTP/1.1" 200 24394
+2017-05-05 16:32:13,047 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:13,049 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:13,641 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-ro.html HTTP/1.1" 200 24722
+2017-05-05 16:32:13,684 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-eo.html HTTP/1.1" 200 24812
+2017-05-05 16:32:14,144 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 10
+2017-05-05 16:32:14,145 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-tr.html
+2017-05-05 16:32:14,146 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-sl.html
+2017-05-05 16:32:14,148 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-pt.html
+2017-05-05 16:32:14,149 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-ja.html
+2017-05-05 16:32:14,151 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-de.html
+2017-05-05 16:32:14,273 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 10
+2017-05-05 16:32:14,275 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:14,277 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:14,278 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:14,279 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:14,279 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-es.html
+2017-05-05 16:32:14,281 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/index.html
+2017-05-05 16:32:14,284 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:14,286 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:14,288 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:14,758 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 11
+2017-05-05 16:32:14,759 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-zh.html
+2017-05-05 16:32:14,763 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:14,951 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 12
+2017-05-05 16:32:14,952 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-fr.html
+2017-05-05 16:32:14,953 crawler.py: INFO: crawl(): 228: Starting to Crawl Page: http://json.org/json-nl.html
+2017-05-05 16:32:15,107 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 13
+2017-05-05 16:32:15,232 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 14
+2017-05-05 16:32:15,354 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 15
+2017-05-05 16:32:15,470 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 15
+2017-05-05 16:32:15,596 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 16
+2017-05-05 16:32:15,712 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 17
+2017-05-05 16:32:15,825 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 18
+2017-05-05 16:32:15,938 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 19
+2017-05-05 16:32:16,053 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 20
+2017-05-05 16:32:16,197 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 21
+2017-05-05 16:32:16,320 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 22
+2017-05-05 16:32:16,439 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 23
+2017-05-05 16:32:16,440 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-tr.html HTTP/1.1" 200 24833
+2017-05-05 16:32:16,556 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 24
+2017-05-05 16:32:16,682 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 24
+2017-05-05 16:32:16,802 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 25
+2017-05-05 16:32:16,803 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-sl.html HTTP/1.1" 200 24363
+2017-05-05 16:32:16,919 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 25
+2017-05-05 16:32:16,920 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-de.html HTTP/1.1" 200 25088
+2017-05-05 16:32:17,039 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 25
+2017-05-05 16:32:17,040 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /index.html HTTP/1.1" 200 24405
+2017-05-05 16:32:17,160 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 25
+2017-05-05 16:32:17,274 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 26
+2017-05-05 16:32:17,419 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 27
+2017-05-05 16:32:17,420 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-pt.html HTTP/1.1" 200 24678
+2017-05-05 16:32:17,534 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 27
+2017-05-05 16:32:17,535 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-ja.html HTTP/1.1" 200 24987
+2017-05-05 16:32:17,655 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 27
+2017-05-05 16:32:17,656 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-es.html HTTP/1.1" 200 24933
+2017-05-05 16:32:17,774 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 27
+2017-05-05 16:32:17,888 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 28
+2017-05-05 16:32:18,006 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 29
+2017-05-05 16:32:18,008 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:18,009 connectionpool.py: DEBUG: _new_conn(): 207: Starting new HTTP connection (1): json.org
+2017-05-05 16:32:18,010 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-zh.html HTTP/1.1" 200 24394
+2017-05-05 16:32:18,239 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 29
+2017-05-05 16:32:18,907 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-nl.html HTTP/1.1" 200 24646
+2017-05-05 16:32:18,909 connectionpool.py: DEBUG: _make_request(): 395: http://json.org:80 "GET /json-fr.html HTTP/1.1" 200 25405
+2017-05-05 16:32:19,430 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 29
+2017-05-05 16:32:19,544 crawler.py: DEBUG: crawl(): 242: Crawled Pages: 29
+'generate_site_map' took 11.13 sec
+
